@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PointsCommand implements CommandExecutor, TabCompleter {
-    public static String get_perm;
-    public static String set_perm;
-    public static String add_perm;
-    public static String remove_perm;
-    public static String remove_all_perm;
+    public static String get_perm = "lamacraft.pointsystem.get";
+    public static String set_perm = "lamacraft.pointsystem.set";
+    public static String add_perm = "lamacraft.pointsystem.add";
+    public static String remove_perm = "lamacraft.pointsystem.remove";
+    public static String remove_all_perm = "lamacraft.pointsystem.remove_all";
     private static final String prefix = Main.getInstance().prefix;
 
     public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
@@ -76,8 +76,6 @@ public class PointsCommand implements CommandExecutor, TabCompleter {
                     if (p.hasPermission(PointsCommand.set_perm)) {
                         if (points > 0 || points == 0) {
                             PointsAPI.setPoints(target.getUniqueId(), points, p);
-
-
                         } else {
                             p.sendMessage(prefix + "§cDer Wert muss mindestens 0 sein!");
                         }
