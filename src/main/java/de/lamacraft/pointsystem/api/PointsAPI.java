@@ -1,5 +1,6 @@
 package de.lamacraft.pointsystem.api;
 
+import de.lamacraft.pointsystem.Events.PointChangeEvent;
 import de.lamacraft.pointsystem.main.Main;
 import de.lamacraft.pointsystem.mysql.MySQL;
 import org.bukkit.Bukkit;
@@ -42,6 +43,9 @@ public class PointsAPI {
             }
             if(sendingPlayer != null)
             sendingPlayer.sendMessage("§aDie Punkte von §6" + Bukkit.getPlayer(uuid).getName() + " §awurden auf §6" + amount + " §agesetzt!");
+
+            PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
+            Bukkit.getPluginManager().callEvent(e);
         } else {
             if (amount <= 0) {
                 if (amount != 0) {
@@ -65,6 +69,10 @@ public class PointsAPI {
             }
             if(sendingPlayer != null)
             sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDie Punkte von §6" + Bukkit.getPlayer(uuid).getName() + " §awurden erfolgreich auf §6" + amount + " §a gesetzt!");
+
+            PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
+            Bukkit.getPluginManager().callEvent(e);
+
         }
     }
 
@@ -80,6 +88,9 @@ public class PointsAPI {
                         ps2.executeUpdate();
                         if(sendingPlayer != null)
                         sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDem Spieler §6" + Bukkit.getPlayer(uuid).getName() + " §awurden erfolgreich §6" + amount + " §a hinzugefügt!");
+
+                        PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
+                        Bukkit.getPluginManager().callEvent(e);
 
                     } catch (SQLException e2) {
                         e2.printStackTrace();
@@ -105,8 +116,12 @@ public class PointsAPI {
         final int current = getPoints(uuid);
         if (!all) {
             setPoints(uuid, current - amount, sendingPlayer);
+            PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
+            Bukkit.getPluginManager().callEvent(e);
         } else {
             setPoints(uuid, 0, sendingPlayer);
+            PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
+            Bukkit.getPluginManager().callEvent(e);
         }
     }
 }

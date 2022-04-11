@@ -5,9 +5,12 @@ import de.lamacraft.pointsystem.commands.ShopCommand;
 import de.lamacraft.pointsystem.listeners.ClickListener;
 import de.lamacraft.pointsystem.listeners.EnemyKillListener;
 import de.lamacraft.pointsystem.listeners.JoinListener;
+import de.lamacraft.pointsystem.listeners.PointChangeListener;
 import de.lamacraft.pointsystem.mysql.MySQL;
 import de.lamacraft.pointsystem.utils.FileManager;
+import de.lamacraft.pointsystem.utils.ScoreboardManager;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -23,6 +26,12 @@ public class Main extends JavaPlugin {
         setupMySQL();
         registerCommands();
         setupListeners();
+
+        if(!Bukkit.getOnlinePlayers().isEmpty()) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                ScoreboardManager.updateScoreboard(player);
+            }
+        }
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§aPointsSystem erfolgreich aktiviert!");
     }
@@ -64,5 +73,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ClickListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new EnemyKillListener(), this);
+
+        Bukkit.getPluginManager().registerEvents(new PointChangeListener(), this);
     }
 }
