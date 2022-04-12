@@ -11,11 +11,13 @@ import java.util.List;
 public class ItemManager {
 
     private static ItemStack golden_apple_show = new ItemStack(Material.GOLDEN_APPLE);
-    private static  ItemStack golden_carrot_show = new ItemStack(Material.GOLDEN_CARROT);
-    private static  ItemStack ender_pearl_show = new ItemStack(Material.ENDER_PEARL);
-    private static  ItemStack diamond_sword_show = new ItemStack(Material.DIAMOND_SWORD);
-    private static  ItemStack diamond_pickaxe_show = new ItemStack(Material.DIAMOND_PICKAXE);
-    private static  ItemStack god_sword_show = new ItemStack(Material.NETHERITE_SWORD);
+    private static ItemStack golden_carrot_show = new ItemStack(Material.GOLDEN_CARROT);
+    private static ItemStack ender_pearl_show = new ItemStack(Material.ENDER_PEARL);
+    private static ItemStack diamond_sword_show = new ItemStack(Material.DIAMOND_SWORD);
+    private static ItemStack diamond_pickaxe_show = new ItemStack(Material.DIAMOND_PICKAXE);
+    private static ItemStack god_sword_show = new ItemStack(Material.NETHERITE_SWORD);
+
+    private static ItemStack shop_chest = new ItemStack(Material.CHEST);
 
     public static ItemStack getGolden_apple_show() {
         ItemMeta meta = golden_apple_show.getItemMeta();
@@ -26,7 +28,7 @@ public class ItemManager {
         return golden_apple_show;
     }
 
-    public static  ItemStack getGolden_carrot_show() {
+    public static ItemStack getGolden_carrot_show() {
         ItemMeta meta = golden_carrot_show.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.DARK_GREEN + "Kosten: 1000 Punkte");
@@ -35,7 +37,7 @@ public class ItemManager {
         return golden_carrot_show;
     }
 
-    public static  ItemStack getEnder_pearl_show() {
+    public static ItemStack getEnder_pearl_show() {
         ItemMeta meta = ender_pearl_show.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.DARK_GREEN + "Kosten: 1000 Punkte");
@@ -44,7 +46,7 @@ public class ItemManager {
         return ender_pearl_show;
     }
 
-    public static  ItemStack getDiamond_sword_show() {
+    public static ItemStack getDiamond_sword_show() {
         ItemMeta meta = diamond_sword_show.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.DARK_GREEN + "Kosten: 1000 Punkte");
@@ -53,7 +55,7 @@ public class ItemManager {
         return diamond_sword_show;
     }
 
-    public static  ItemStack getDiamond_pickaxe_show() {
+    public static ItemStack getDiamond_pickaxe_show() {
         ItemMeta meta = diamond_pickaxe_show.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.DARK_GREEN + "Kosten: 1000 Punkte");
@@ -80,5 +82,14 @@ public class ItemManager {
         show_items.add(getDiamond_pickaxe_show());
         show_items.add(getGod_sword_show());
         return show_items;
+    }
+
+    public static ItemStack getShop_chest() {
+        ItemMeta meta = shop_chest.getItemMeta();
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("////Shop Chest\\\\");
+        meta.setLore(lore);
+        shop_chest.setItemMeta(meta);
+        return shop_chest;
     }
 }

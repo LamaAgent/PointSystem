@@ -17,8 +17,18 @@ public class Main extends JavaPlugin {
 
     public static String webhook_url;
     private static Main instance;
+//    private static HoloManager manager;
 
     public String prefix;
+
+    public static Main getInstance() {
+        return instance;
+    }
+
+//    public static HoloManager getManager() {
+//        return manager;
+//    }
+
     @Override
     public void onEnable() {
         instance = this;
@@ -27,11 +37,15 @@ public class Main extends JavaPlugin {
         registerCommands();
         setupListeners();
 
-        if(!Bukkit.getOnlinePlayers().isEmpty()) {
+        if (!Bukkit.getOnlinePlayers().isEmpty()) {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 ScoreboardManager.updateScoreboard(player);
             }
         }
+
+//        manager = new HoloManager();
+//
+//        manager.spawnAllHolos();
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§aPointsSystem erfolgreich aktiviert!");
     }
@@ -41,11 +55,9 @@ public class Main extends JavaPlugin {
 
         MySQL.close();
 
-        Bukkit.getConsoleSender().sendMessage(prefix + "§cPointsSystem erfolgreich deaktiviert!");
-    }
+//        manager.removeAllHolos();
 
-    public static Main getInstance() {
-        return instance;
+        Bukkit.getConsoleSender().sendMessage(prefix + "§cPointsSystem erfolgreich deaktiviert!");
     }
 
     public void setupFiles() {
@@ -64,6 +76,7 @@ public class Main extends JavaPlugin {
     public void registerCommands() {
         Bukkit.getPluginCommand("points").setExecutor(new PointsCommand());
         Bukkit.getPluginCommand("shop").setExecutor(new ShopCommand());
+//        Bukkit.getPluginCommand("hologram").setExecutor(new HologramCommand());
     }
 
     public void setupListeners() {

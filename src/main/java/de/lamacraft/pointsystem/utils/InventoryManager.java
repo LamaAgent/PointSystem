@@ -10,7 +10,7 @@ public class InventoryManager {
     public static void createInventory(Player p) {
         Inventory inv = Bukkit.createInventory(null, 9, "§6SHOP");
 
-        for(ItemStack itemStack : ItemManager.getShowItems()) {
+        for (ItemStack itemStack : ItemManager.getShowItems()) {
             inv.addItem(itemStack);
         }
 

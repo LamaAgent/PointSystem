@@ -2,7 +2,6 @@ package de.lamacraft.pointsystem.listeners;
 
 import de.lamacraft.pointsystem.api.PointsAPI;
 import de.lamacraft.pointsystem.mysql.MySQL;
-import de.lamacraft.pointsystem.utils.FileManager;
 import de.lamacraft.pointsystem.utils.ScoreboardManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

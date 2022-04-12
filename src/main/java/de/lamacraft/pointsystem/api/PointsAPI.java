@@ -41,22 +41,22 @@ public class PointsAPI {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            if(sendingPlayer != null)
-            sendingPlayer.sendMessage("§aDie Punkte von §6" + Bukkit.getPlayer(uuid).getName() + " §awurden auf §6" + amount + " §agesetzt!");
+            if (sendingPlayer != null)
+                sendingPlayer.sendMessage("§aDie Punkte von §6" + Bukkit.getPlayer(uuid).getName() + " §awurden auf §6" + amount + " §agesetzt!");
 
             PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
             Bukkit.getPluginManager().callEvent(e);
         } else {
             if (amount <= 0) {
                 if (amount != 0) {
-                    if(sendingPlayer != null)
-                    sendingPlayer.sendMessage(Main.getInstance().prefix + "§cDer Wert muss mindestens 0 sein!");
+                    if (sendingPlayer != null)
+                        sendingPlayer.sendMessage(Main.getInstance().prefix + "§cDer Wert muss mindestens 0 sein!");
                     return;
                 }
             }
             if (amount > 200000000) {
-                if(sendingPlayer != null)
-                sendingPlayer.sendMessage(Main.getInstance().prefix + "§cDer Wert darf maximal 200000000 sein!");
+                if (sendingPlayer != null)
+                    sendingPlayer.sendMessage(Main.getInstance().prefix + "§cDer Wert darf maximal 200000000 sein!");
                 return;
             }
             try {
@@ -67,8 +67,8 @@ public class PointsAPI {
             } catch (SQLException e2) {
                 e2.printStackTrace();
             }
-            if(sendingPlayer != null)
-            sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDie Punkte von §6" + Bukkit.getPlayer(uuid).getName() + " §awurden erfolgreich auf §6" + amount + " §a gesetzt!");
+            if (sendingPlayer != null)
+                sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDie Punkte von §6" + Bukkit.getPlayer(uuid).getName() + " §awurden erfolgreich auf §6" + amount + " §a gesetzt!");
 
             PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
             Bukkit.getPluginManager().callEvent(e);
@@ -86,8 +86,8 @@ public class PointsAPI {
                         ps2.setInt(1, current + amount);
                         ps2.setString(2, uuid.toString());
                         ps2.executeUpdate();
-                        if(sendingPlayer != null)
-                        sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDem Spieler §6" + Bukkit.getPlayer(uuid).getName() + " §awurden erfolgreich §6" + amount + " §a hinzugefügt!");
+                        if (sendingPlayer != null)
+                            sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDem Spieler §6" + Bukkit.getPlayer(uuid).getName() + " §awurden erfolgreich §6" + amount + " §a hinzugefügt!");
 
                         PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
                         Bukkit.getPluginManager().callEvent(e);
@@ -96,18 +96,18 @@ public class PointsAPI {
                         e2.printStackTrace();
                     }
                 } else {
-                    if(sendingPlayer != null)
-                    sendingPlayer.sendMessage("§cEin Spieler darf maximal 200000000 Punkte haben!");
+                    if (sendingPlayer != null)
+                        sendingPlayer.sendMessage("§cEin Spieler darf maximal 200000000 Punkte haben!");
                     return;
                 }
             } else {
-                if(sendingPlayer != null)
-                sendingPlayer.sendMessage("§cEin Spieler darf maximal 200000000 Punkte haben!");
+                if (sendingPlayer != null)
+                    sendingPlayer.sendMessage("§cEin Spieler darf maximal 200000000 Punkte haben!");
                 return;
             }
         } else {
-            if(sendingPlayer != null)
-            sendingPlayer.sendMessage("§cEinem Spieler muss mindestens 1 Punkt hinzugefügt werden!");
+            if (sendingPlayer != null)
+                sendingPlayer.sendMessage("§cEinem Spieler muss mindestens 1 Punkt hinzugefügt werden!");
             return;
         }
     }

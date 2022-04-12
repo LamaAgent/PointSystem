@@ -15,12 +15,12 @@ public class PointChangeEvent extends Event {
         this.points = points;
     }
 
-    @Override
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return HANDLERS;
     }
 
-    public static HandlerList getHandlerList() {
+    @Override
+    public HandlerList getHandlers() {
         return HANDLERS;
     }
 

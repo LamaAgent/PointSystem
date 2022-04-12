@@ -1,4 +1,3 @@
-
 package de.lamacraft.pointsystem.commands;
 
 import de.lamacraft.pointsystem.api.PointsAPI;
@@ -15,24 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PointsCommand implements CommandExecutor, TabCompleter {
+    private static final String prefix = Main.getInstance().prefix;
     public static String get_perm = "lamacraft.pointsystem.get";
     public static String set_perm = "lamacraft.pointsystem.set";
     public static String add_perm = "lamacraft.pointsystem.add";
     public static String remove_perm = "lamacraft.pointsystem.remove";
     public static String remove_all_perm = "lamacraft.pointsystem.remove_all";
-    private static final String prefix = Main.getInstance().prefix;
 
     public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
         if (sender instanceof Player) {
             final Player p = (Player) sender;
             if (args.length == 2) {
-                @SuppressWarnings("deprecation")
-                final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+                @SuppressWarnings("deprecation") final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                 if (args[0].equalsIgnoreCase("get")) {
                     if (p.hasPermission(PointsCommand.get_perm)) {
                         final int points = PointsAPI.getPoints(target.getUniqueId());
                         if (points == -1) {
-                           p.sendMessage(prefix + "§cDer Spieler §6" + target.getName() + " §cwar noch nie auf diesem Server!");
+                            p.sendMessage(prefix + "§cDer Spieler §6" + target.getName() + " §cwar noch nie auf diesem Server!");
                             return true;
                         }
                         p.sendMessage(prefix + "§aDer Spieler §6" + target.getName() + " §abesitzt zurzeit §6" + points + " §aPunkte!");
@@ -43,8 +41,7 @@ public class PointsCommand implements CommandExecutor, TabCompleter {
                     p.sendMessage(prefix + "§cBitte benutze §6/points <add|set|remove|get> (Spielername) §c!");
                 }
             } else if (args.length == 3) {
-                @SuppressWarnings("deprecation")
-                final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+                @SuppressWarnings("deprecation") final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                 if (args[0].equalsIgnoreCase("remove") && args[2].equalsIgnoreCase("all")) {
                     if (p.hasPermission(PointsCommand.remove_all_perm)) {
                         PointsAPI.removePoints(target.getUniqueId(), 0, p, true);
