@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.UUID;
 
 public class PointsAPI {
@@ -42,7 +43,7 @@ public class PointsAPI {
                 e.printStackTrace();
             }
             if (sendingPlayer != null)
-                sendingPlayer.sendMessage("§aDie Punkte von §6" + Bukkit.getPlayer(uuid).getName() + " §awurden auf §6" + amount + " §agesetzt!");
+                sendingPlayer.sendMessage("§aDie Punkte von §6" + Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName() + " §awurden auf §6" + amount + " §agesetzt!");
 
             PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
             Bukkit.getPluginManager().callEvent(e);
@@ -68,7 +69,7 @@ public class PointsAPI {
                 e2.printStackTrace();
             }
             if (sendingPlayer != null)
-                sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDie Punkte von §6" + Bukkit.getPlayer(uuid).getName() + " §awurden erfolgreich auf §6" + amount + " §a gesetzt!");
+                sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDie Punkte von §6" + Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName() + " §awurden erfolgreich auf §6" + amount + " §a gesetzt!");
 
             PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
             Bukkit.getPluginManager().callEvent(e);
@@ -87,7 +88,7 @@ public class PointsAPI {
                         ps2.setString(2, uuid.toString());
                         ps2.executeUpdate();
                         if (sendingPlayer != null)
-                            sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDem Spieler §6" + Bukkit.getPlayer(uuid).getName() + " §awurden erfolgreich §6" + amount + " §a hinzugefügt!");
+                            sendingPlayer.sendMessage(Main.getInstance().prefix + "§aDem Spieler §6" + Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName() + " §awurden erfolgreich §6" + amount + " §a hinzugefügt!");
 
                         PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
                         Bukkit.getPluginManager().callEvent(e);

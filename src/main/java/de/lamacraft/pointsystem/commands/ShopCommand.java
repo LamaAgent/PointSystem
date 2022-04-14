@@ -10,8 +10,7 @@ public class ShopCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (sender instanceof Player) {
-            Player p = (Player) sender;
+        if (sender instanceof Player p) {
             p.getInventory().addItem(ItemManager.getShop_chest());
 
         }

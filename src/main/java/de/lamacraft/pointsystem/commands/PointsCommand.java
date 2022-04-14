@@ -22,8 +22,7 @@ public class PointsCommand implements CommandExecutor, TabCompleter {
     public static String remove_all_perm = "lamacraft.pointsystem.remove_all";
 
     public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
-        if (sender instanceof Player) {
-            final Player p = (Player) sender;
+        if (sender instanceof final Player p) {
             if (args.length == 2) {
                 @SuppressWarnings("deprecation") final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                 if (args[0].equalsIgnoreCase("get")) {

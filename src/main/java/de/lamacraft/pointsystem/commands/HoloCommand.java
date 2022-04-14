@@ -7,15 +7,17 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class HoloCommand implements CommandExecutor {
+public class HoloCommand implements CommandExecutor, TabCompleter {
 
 
     @Override
@@ -35,13 +37,20 @@ public class HoloCommand implements CommandExecutor {
                 holo.setGravity(false);
                 HologramManager.saveHolo(holo, HologramManager.getNextID(), holo.getEntityId());
                 p.sendMessage("§aHolo created!");
+                return true;
             } else if (args.length == 2 && args[0].equalsIgnoreCase("remove")) {
-                int id = Integer.parseInt(args[1]);
+
+                int id;
+                try {
+                    id = Integer.parseInt(args[1]);
+                } catch (NumberFormatException e) {
+                    p.sendMessage("§c(ID) muss eine Zahl sein!");
+                    return true;
+                }
                 if (FileManager.getConfigFileConfiguration().get("hologram." + id) != null) {
                     List<String> list = FileManager.getConfigFileConfiguration().getStringList("hologram." + id);
                     String string = list.get(list.size() - 1);
                     String entityID = string.split(",")[4];
-                    String text = string.split(":--:")[1];
                     for (Entity entity : p.getWorld().getEntities()) {
                         if (entity instanceof ArmorStand) {
                             if (entity.getCustomName() != null) {
@@ -51,25 +60,57 @@ public class HoloCommand implements CommandExecutor {
                                     FileManager.getConfigFileConfiguration().set("id", 0);
                                     try {
                                         FileManager.getConfigFileConfiguration().save(FileManager.getConfigFile());
-                                        p.sendMessage("File should be saved!");
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
                                     p.sendMessage("§aHolo removed!");
-
+                                    return true;
                                 }
-
                             }
                         }
                     }
-                } else
+                } else {
                     p.sendMessage("§cDieses Hologramm gibt es nicht!");
+                    return true;
+                }
 
-            } else
+
+            } else {
                 p.sendMessage("§cBitte benutze §6/holo <create|remove> (ID) §c!");
-        } else
+                return true;
+            }
+        } else {
             Bukkit.getConsoleSender().sendMessage("§cDieser Command kann nur von einem Spieler ausgeführt werden!");
+            return true;
+        }
 
         return false;
+    }
+
+    public List<String> onTabComplete(final CommandSender sender, final Command command, final String label, final String[] args) {
+        final ArrayList<String> list = new ArrayList<>();
+        if (args.length == 0) {
+            return list;
+        }
+        if (args.length == 1) {
+            list.add("create");
+            list.add("remove");
+        } else if (args.length == 2) {
+            if (args[0].equalsIgnoreCase("remove")) {
+
+                for (int i = FileManager.getConfigFileConfiguration().getInt("id") - 1; i >= 0; i--) {
+                    list.add(Integer.toString(i));
+                }
+
+            }
+        }
+        final ArrayList<String> completerlist = new ArrayList<>();
+        final String currentarg = args[args.length - 1];
+        for (final String s : list) {
+            if (s.startsWith(currentarg)) {
+                completerlist.add(s);
+            }
+        }
+        return completerlist;
     }
 }

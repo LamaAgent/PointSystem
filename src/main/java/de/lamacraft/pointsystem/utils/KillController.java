@@ -8,15 +8,9 @@ public class KillController {
 
     static int taskID = -1;
 
+    @SuppressWarnings("deprecation")
     public static void startKillTimer() {
-        taskID = Bukkit.getScheduler().scheduleAsyncRepeatingTask(Main.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-
-                DeathListener.kills.clear();
-
-            }
-        }, 0, 72000);
+        taskID = Bukkit.getScheduler().scheduleAsyncRepeatingTask(Main.getInstance(), () -> DeathListener.kills.clear(), 0, 72000);
     }
 
     public static void stopKillTimer() {
