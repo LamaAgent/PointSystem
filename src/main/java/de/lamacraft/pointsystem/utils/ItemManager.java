@@ -87,8 +87,9 @@ public class ItemManager {
     public static ItemStack getShop_chest() {
         ItemMeta meta = shop_chest.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
-        lore.add("////Shop Chest\\\\");
+        lore.add("Shop_Chest");
         meta.setLore(lore);
+        meta.setDisplayName("Shop_Chest");
         shop_chest.setItemMeta(meta);
         return shop_chest;
     }

@@ -3,12 +3,10 @@ package de.lamacraft.pointsystem.main;
 import de.lamacraft.pointsystem.commands.HoloCommand;
 import de.lamacraft.pointsystem.commands.PointsCommand;
 import de.lamacraft.pointsystem.commands.ShopCommand;
-import de.lamacraft.pointsystem.listeners.ClickListener;
-import de.lamacraft.pointsystem.listeners.EnemyKillListener;
-import de.lamacraft.pointsystem.listeners.JoinListener;
-import de.lamacraft.pointsystem.listeners.PointChangeListener;
+import de.lamacraft.pointsystem.listeners.*;
 import de.lamacraft.pointsystem.mysql.MySQL;
 import de.lamacraft.pointsystem.utils.FileManager;
+import de.lamacraft.pointsystem.utils.KillController;
 import de.lamacraft.pointsystem.utils.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -40,6 +38,8 @@ public class Main extends JavaPlugin {
             }
         }
 
+        KillController.startKillTimer();
+
         Bukkit.getConsoleSender().sendMessage(prefix + "§aPointsSystem erfolgreich aktiviert!");
     }
 
@@ -48,6 +48,7 @@ public class Main extends JavaPlugin {
 
         MySQL.close();
 
+        KillController.stopKillTimer();
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§cPointsSystem erfolgreich deaktiviert!");
     }
@@ -80,5 +81,11 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EnemyKillListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new PointChangeListener(), this);
+
+        Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
+
+        Bukkit.getPluginManager().registerEvents(new InteractListener(), this);
+
+        Bukkit.getPluginManager().registerEvents(new BlockPlaceListener(), this);
     }
 }

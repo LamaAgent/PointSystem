@@ -1,7 +1,6 @@
 package de.lamacraft.pointsystem.utils;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.ArmorStand;
 
@@ -27,7 +26,7 @@ public class HologramManager {
 
         String data = world + "," + x + "," + y + "," + z + "," + entityID + "," + ":--:" + name;
 
-        if(cfg.get(path) != null) {
+        if (cfg.get(path) != null) {
             List<String> list = cfg.getStringList(path);
             list.add(data);
             cfg.set(path, list);

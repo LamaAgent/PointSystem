@@ -2,6 +2,7 @@ package de.lamacraft.pointsystem.listeners;
 
 import de.lamacraft.pointsystem.api.PointsAPI;
 import de.lamacraft.pointsystem.main.Main;
+import de.lamacraft.pointsystem.utils.ItemManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -19,6 +20,15 @@ public class ClickListener implements Listener {
         Player p = (Player) e.getWhoClicked();
         if (e.getView().getTitle().equalsIgnoreCase("§6SHOP")) {
 
+            for (ItemStack item : ItemManager.getShowItems()) {
+                if(e.getCurrentItem().isSimilar(item)) {
+                    if (PointsAPI.getPoints(p.getUniqueId()) >= 1000) {
+                        PointsAPI.removePoints(p.getUniqueId(), 1000, null, false);
+                        p.getInventory().addItem(item);
+                        p.sendMessage("§aDu hast dir erfolgreich §6" + item.getType() + " §agekauft!");
+                    }
+                }
+            }
 
             if (e.getCurrentItem().getType() == Material.DIAMOND_SWORD) {
                 if (PointsAPI.getPoints(p.getUniqueId()) >= 100) {

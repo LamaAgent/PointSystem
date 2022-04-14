@@ -1,15 +1,10 @@
 package de.lamacraft.pointsystem.commands;
 
-import de.lamacraft.pointsystem.main.Main;
-import de.lamacraft.pointsystem.utils.FileManager;
-import de.lamacraft.pointsystem.utils.InventoryManager;
+import de.lamacraft.pointsystem.utils.ItemManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.io.File;
-import java.io.IOException;
 
 public class ShopCommand implements CommandExecutor {
     @Override
@@ -17,7 +12,7 @@ public class ShopCommand implements CommandExecutor {
 
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            InventoryManager.createInventory(p);
+            p.getInventory().addItem(ItemManager.getShop_chest());
 
         }
 
