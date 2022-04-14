@@ -7,5 +7,4 @@ commands:
     description: Der Punkte Command!
   shop:
     description: Öffnet den Shop!
-#  hologram:
-#    description: Erstellt ein Hologramm!
+  holo:

@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ShopCommand implements CommandExecutor {
@@ -18,7 +19,6 @@ public class ShopCommand implements CommandExecutor {
             Player p = (Player) sender;
             InventoryManager.createInventory(p);
 
-//            Main.getManager().removeAllHolos();
         }
 
         return false;

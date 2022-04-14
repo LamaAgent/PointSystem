@@ -1,5 +1,6 @@
 package de.lamacraft.pointsystem.main;
 
+import de.lamacraft.pointsystem.commands.HoloCommand;
 import de.lamacraft.pointsystem.commands.PointsCommand;
 import de.lamacraft.pointsystem.commands.ShopCommand;
 import de.lamacraft.pointsystem.listeners.ClickListener;
@@ -17,7 +18,6 @@ public class Main extends JavaPlugin {
 
     public static String webhook_url;
     private static Main instance;
-//    private static HoloManager manager;
 
     public String prefix;
 
@@ -25,9 +25,6 @@ public class Main extends JavaPlugin {
         return instance;
     }
 
-//    public static HoloManager getManager() {
-//        return manager;
-//    }
 
     @Override
     public void onEnable() {
@@ -43,10 +40,6 @@ public class Main extends JavaPlugin {
             }
         }
 
-//        manager = new HoloManager();
-//
-//        manager.spawnAllHolos();
-
         Bukkit.getConsoleSender().sendMessage(prefix + "§aPointsSystem erfolgreich aktiviert!");
     }
 
@@ -55,7 +48,6 @@ public class Main extends JavaPlugin {
 
         MySQL.close();
 
-//        manager.removeAllHolos();
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§cPointsSystem erfolgreich deaktiviert!");
     }
@@ -76,7 +68,7 @@ public class Main extends JavaPlugin {
     public void registerCommands() {
         Bukkit.getPluginCommand("points").setExecutor(new PointsCommand());
         Bukkit.getPluginCommand("shop").setExecutor(new ShopCommand());
-//        Bukkit.getPluginCommand("hologram").setExecutor(new HologramCommand());
+        Bukkit.getPluginCommand("holo").setExecutor(new HoloCommand());
     }
 
     public void setupListeners() {
