@@ -1,7 +1,6 @@
 package de.lamacraft.pointsystem.listeners;
 
 import de.lamacraft.pointsystem.main.Main;
-import de.lamacraft.pointsystem.utils.FileManager;
 import de.lamacraft.pointsystem.utils.ItemManager;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -13,14 +12,12 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.List;
-
 public class BlockPlaceListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent e) {
         Player p = e.getPlayer();
-        if(e.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("Shop_Chest")) {
+        if (e.getItemInHand().isSimilar(ItemManager.getShop_chest())) {
             if (e.getBlock().getType() == Material.CHEST) {
                 if (e.getBlock().getState() instanceof TileState) {
                     TileState state = (TileState) e.getBlock().getState();

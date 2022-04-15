@@ -87,5 +87,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new InteractListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new BlockPlaceListener(), this);
+
+        Bukkit.getPluginManager().registerEvents(new PingListener(), this);
     }
 }

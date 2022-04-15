@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class HoloCommand implements CommandExecutor, TabCompleter {
 
+    private static final FileConfiguration cfg = FileManager.getConfigFileConfiguration();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -47,8 +49,8 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                     p.sendMessage("§c(ID) muss eine Zahl sein!");
                     return true;
                 }
-                if (FileManager.getConfigFileConfiguration().get("hologram." + id) != null) {
-                    List<String> list = FileManager.getConfigFileConfiguration().getStringList("hologram." + id);
+                if (cfg.get("hologram." + id) != null) {
+                    List<String> list = cfg.getStringList("hologram." + id);
                     String string = list.get(list.size() - 1);
                     String entityID = string.split(",")[4];
                     for (Entity entity : p.getWorld().getEntities()) {
@@ -56,10 +58,10 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                             if (entity.getCustomName() != null) {
                                 if (entity.getEntityId() == Integer.parseInt(entityID)) {
                                     entity.remove();
-                                    FileManager.getConfigFileConfiguration().set("hologram." + id, null);
-                                    FileManager.getConfigFileConfiguration().set("id", 0);
+                                    cfg.set("hologram." + id, null);
+                                    cfg.set("id", 0);
                                     try {
-                                        FileManager.getConfigFileConfiguration().save(FileManager.getConfigFile());
+                                        cfg.save(FileManager.getConfigFile());
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
@@ -98,8 +100,10 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
         } else if (args.length == 2) {
             if (args[0].equalsIgnoreCase("remove")) {
 
-                for (int i = FileManager.getConfigFileConfiguration().getInt("id") - 1; i >= 0; i--) {
-                    list.add(Integer.toString(i));
+                for (int i = cfg.getInt("id") - 1; i >= 0; i--) {
+                    if (cfg.get("hologram." + i) != null) {
+                        list.add(Integer.toString(i));
+                    }
                 }
 
             }
