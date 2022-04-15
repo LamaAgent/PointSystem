@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class HologramManager {
 
-    static FileConfiguration cfg = FileManager.getConfigFileConfiguration();
+    public static FileConfiguration cfg = FileManager.getConfigFileConfiguration();
 
     public static void saveHolo(ArmorStand holo, int id, int entityID) {
 
@@ -36,7 +36,6 @@ public class HologramManager {
             cfg.set(path, list);
             cfg.set("id", getNextID() + 1);
         try {
-            System.out.println("DEBUG --> HOLO SAVED!");
             cfg.save(FileManager.getConfigFile());
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,7 +76,6 @@ public class HologramManager {
                     String new_data = world.getName() + "," + x + "," + y + "," + z + "," + entityID + "," + ":--:" + text;
                     List<String> new_list = new ArrayList<>();
                     new_list.add(new_data);
-                    System.out.println("DEBUG --> NEW DATAS:" + new_data);
                     cfg.set("hologram." + i, new_list);
                     for (String s : new_list) {
                         System.out.println("New Datas: " + s);
@@ -87,11 +85,7 @@ public class HologramManager {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                } else {
-                    System.out.println("DEBUG --> LIST SIZE IS 0");
                 }
-            } else {
-                System.out.println("DEBUG1 --> HOLO IS NULL!");
             }
         }
     }
