@@ -37,6 +37,14 @@ public class FileManager {
         return YamlConfiguration.loadConfiguration(getMobPointsFile());
     }
 
+    public static File getHologramsFile() {
+        return new File("plugins/PointSystem", "holograms.yml");
+    }
+
+    public static FileConfiguration getHologramsFileConfiguration() {
+        return YamlConfiguration.loadConfiguration(getHologramsFile());
+    }
+
     public static void setStandardConfig() {
         FileConfiguration cfg = getConfigFileConfiguration();
         cfg.options().copyDefaults(true);

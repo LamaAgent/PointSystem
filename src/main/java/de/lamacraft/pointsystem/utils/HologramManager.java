@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class HologramManager {
 
-    public static FileConfiguration cfg = FileManager.getConfigFileConfiguration();
+    public static FileConfiguration cfg = FileManager.getHologramsFileConfiguration();
 
     public static void saveHolo(ArmorStand holo, int id, int entityID) {
 
@@ -36,7 +36,7 @@ public class HologramManager {
             cfg.set(path, list);
             cfg.set("id", getNextID() + 1);
         try {
-            cfg.save(FileManager.getConfigFile());
+            cfg.save(FileManager.getHologramsFile());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,7 +81,7 @@ public class HologramManager {
                         System.out.println("New Datas: " + s);
                     }
                     try {
-                        cfg.save(FileManager.getConfigFile());
+                        cfg.save(FileManager.getHologramsFile());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

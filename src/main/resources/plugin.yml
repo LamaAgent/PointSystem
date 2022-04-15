@@ -8,3 +8,6 @@ commands:
   shop:
     description: Öffnet den Shop!
   holo:
+    description: Verwaltet die Hologramme!
+  maintance:
+    description: (De)aktiviert den Wartungsmodus!

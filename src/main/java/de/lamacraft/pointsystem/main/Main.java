@@ -1,6 +1,7 @@
 package de.lamacraft.pointsystem.main;
 
 import de.lamacraft.pointsystem.commands.HoloCommand;
+import de.lamacraft.pointsystem.commands.MaintanceCommand;
 import de.lamacraft.pointsystem.commands.PointsCommand;
 import de.lamacraft.pointsystem.commands.ShopCommand;
 import de.lamacraft.pointsystem.listeners.*;
@@ -75,6 +76,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginCommand("points").setExecutor(new PointsCommand());
         Bukkit.getPluginCommand("shop").setExecutor(new ShopCommand());
         Bukkit.getPluginCommand("holo").setExecutor(new HoloCommand());
+        Bukkit.getPluginCommand("maintance").setExecutor(new MaintanceCommand());
     }
 
     public void setupListeners() {

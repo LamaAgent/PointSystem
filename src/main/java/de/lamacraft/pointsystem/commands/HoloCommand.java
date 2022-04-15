@@ -1,5 +1,6 @@
 package de.lamacraft.pointsystem.commands;
 
+import de.lamacraft.pointsystem.api.PointsAPI;
 import de.lamacraft.pointsystem.utils.FileManager;
 import de.lamacraft.pointsystem.utils.HologramManager;
 import org.bukkit.Bukkit;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class HoloCommand implements CommandExecutor, TabCompleter {
 
-    private static FileConfiguration cfg = FileManager.getConfigFileConfiguration();
+    private static FileConfiguration cfg = FileManager.getHologramsFileConfiguration();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -40,10 +41,10 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                 holo.setCustomName(ChatColor.RED + final_text);
                 holo.setGravity(false);
 
-                HologramManager.cfg = FileManager.getConfigFileConfiguration();
+                HologramManager.cfg = FileManager.getHologramsFileConfiguration();
                 HologramManager.saveHolo(holo, HologramManager.getNextID(), holo.getEntityId());
                 p.sendMessage("§aHolo created!");
-                cfg = FileManager.getConfigFileConfiguration();
+                cfg = FileManager.getHologramsFileConfiguration();
                 return false;
             } else if (args.length == 2 && args[0].equalsIgnoreCase("remove")) {
 
@@ -66,13 +67,13 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                                         entity.remove();
                                         cfg.set("hologram." + id, null);
                                         try {
-                                            cfg.save(FileManager.getConfigFile());
+                                            cfg.save(FileManager.getHologramsFile());
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
                                         p.sendMessage("§aHolo removed!");
-                                        HologramManager.cfg = FileManager.getConfigFileConfiguration();
-                                        cfg = FileManager.getConfigFileConfiguration();
+                                        HologramManager.cfg = FileManager.getHologramsFileConfiguration();
+                                        cfg = FileManager.getHologramsFileConfiguration();
                                         return false;
                                     }
                                 }
@@ -107,18 +108,29 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                         double z = Double.parseDouble(data.split(",")[3]);
                         Location loc = new Location(world, x, y - 0.25D, z);
 
+                        StringBuilder text = new StringBuilder();
+                        for (int i = 1; i < args.length; i++) {
+                            text.append(args[i]).append(" ");
+                        }
+                        String final_text = text.toString().trim();
+
+                        if (args[2].contains("%Lama_Agent%")) {
+                            final_text = String.valueOf(PointsAPI.getPoints(Bukkit.getPlayer("Lama_Agent").getUniqueId()));
+                        }
+
                         ArmorStand holo = (ArmorStand) p.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
                         holo.setVisible(false);
                         holo.setCustomNameVisible(true);
-                        holo.setCustomName(ChatColor.BLUE + args[2]);
+                        holo.setCustomName(ChatColor.BLUE + final_text);
                         holo.setGravity(false);
+
 
                         int entityID = holo.getEntityId();
 
 
                         HologramManager.saveHolo(holo, HologramManager.getNextID(), entityID);
-                        HologramManager.cfg = FileManager.getConfigFileConfiguration();
-                        cfg = FileManager.getConfigFileConfiguration();
+                        HologramManager.cfg = FileManager.getHologramsFileConfiguration();
+                        cfg = FileManager.getHologramsFileConfiguration();
                         p.sendMessage("§aLine added!");
                     }
                 } else {
@@ -127,7 +139,7 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                 }
 
             } else {
-                p.sendMessage("§cBitte benutze §6/holo <create|remove> (ID) §c!");
+                p.sendMessage("§cBitte benutze §6/holo <create|remove|addline> (ID) §c!");
                 return true;
             }
         } else {
@@ -148,7 +160,7 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
             list.add("remove");
             list.add("addline");
         } else if (args.length == 2) {
-            if (args[0].equalsIgnoreCase("remove")) {
+            if (args[0].equalsIgnoreCase("remove") || args[0].equalsIgnoreCase("addline")) {
 
                 for (int i = cfg.getInt("id") - 1; i >= 0; i--) {
                     if (cfg.get("hologram." + i) != null) {
