@@ -6,6 +6,7 @@ import de.lamacraft.pointsystem.commands.ShopCommand;
 import de.lamacraft.pointsystem.listeners.*;
 import de.lamacraft.pointsystem.mysql.MySQL;
 import de.lamacraft.pointsystem.utils.FileManager;
+import de.lamacraft.pointsystem.utils.HologramManager;
 import de.lamacraft.pointsystem.utils.KillController;
 import de.lamacraft.pointsystem.utils.ScoreboardManager;
 import org.bukkit.Bukkit;
@@ -29,6 +30,7 @@ public class Main extends JavaPlugin {
         instance = this;
         setupFiles();
         setupMySQL();
+        HologramManager.spawnHolos();
         registerCommands();
         setupListeners();
 
@@ -40,6 +42,7 @@ public class Main extends JavaPlugin {
 
         KillController.startKillTimer();
 
+
         Bukkit.getConsoleSender().sendMessage(prefix + "§aPointsSystem erfolgreich aktiviert!");
     }
 
@@ -49,6 +52,8 @@ public class Main extends JavaPlugin {
         MySQL.close();
 
         KillController.stopKillTimer();
+
+        HologramManager.despawnAllHolos(Bukkit.getWorld("world"));
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§cPointsSystem erfolgreich deaktiviert!");
     }

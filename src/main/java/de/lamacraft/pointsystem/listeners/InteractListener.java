@@ -31,7 +31,6 @@ public class InteractListener implements Listener {
                             if ("chest_shop".equalsIgnoreCase(container.get(key, PersistentDataType.STRING))) {
                                 e.setCancelled(true);
                                 InventoryManager.createInventory(p);
-                                p.sendMessage("§aShop geöffnet!");
                             }
                             }
                         }

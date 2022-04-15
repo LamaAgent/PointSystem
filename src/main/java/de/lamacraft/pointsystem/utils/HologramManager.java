@@ -1,12 +1,17 @@
 package de.lamacraft.pointsystem.utils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HologramManager {
 
@@ -26,17 +31,12 @@ public class HologramManager {
 
         String data = world + "," + x + "," + y + "," + z + "," + entityID + "," + ":--:" + name;
 
-        if (cfg.get(path) != null) {
-            List<String> list = cfg.getStringList(path);
-            list.add(data);
-            cfg.set(path, list);
-        } else {
             List<String> list = new ArrayList<>();
             list.add(data);
             cfg.set(path, list);
             cfg.set("id", getNextID() + 1);
-        }
         try {
+            System.out.println("DEBUG --> HOLO SAVED!");
             cfg.save(FileManager.getConfigFile());
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,5 +53,76 @@ public class HologramManager {
         holo.remove();
     }
 
+
+    public static void spawnHolos() {
+        for (int i = cfg.getInt("id") - 1; i >= 0; i--) {
+            if (cfg.get("hologram." + i) != null) {
+                List<String> list = cfg.getStringList("hologram." + i);
+                if (!(list.size() <= 0)) {
+                    String data = list.get(list.size() - 1);
+                    World world = Bukkit.getWorld(data.split(",")[0]);
+                    double x = Double.parseDouble(data.split(",")[1]);
+                    double y = Double.parseDouble(data.split(",")[2]);
+                    double z = Double.parseDouble(data.split(",")[3]);
+                    String text = data.split(":--:")[1];
+                    Location loc = new Location(world, x, y, z);
+
+                    ArmorStand holo = (ArmorStand) Objects.requireNonNull(Bukkit.getServer().getWorld("world")).spawnEntity(loc, EntityType.ARMOR_STAND);
+                    holo.setGravity(false);
+                    holo.setCustomName(text);
+                    holo.setCustomNameVisible(true);
+                    holo.setVisible(false);
+
+                    int entityID = holo.getEntityId();
+                    String new_data = world.getName() + "," + x + "," + y + "," + z + "," + entityID + "," + ":--:" + text;
+                    List<String> new_list = new ArrayList<>();
+                    new_list.add(new_data);
+                    System.out.println("DEBUG --> NEW DATAS:" + new_data);
+                    cfg.set("hologram." + i, new_list);
+                    for (String s : new_list) {
+                        System.out.println("New Datas: " + s);
+                    }
+                    try {
+                        cfg.save(FileManager.getConfigFile());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.out.println("DEBUG --> LIST SIZE IS 0");
+                }
+            } else {
+                System.out.println("DEBUG1 --> HOLO IS NULL!");
+            }
+        }
+    }
+
+    public static List<List<String>> getHolos() {
+        List<List<String>> holo_list = new ArrayList<>();
+
+        for (int i = cfg.getInt("id") - 1; i >= 0; i--) {
+            if (cfg.get("hologram." + i) != null) {
+                List<String> single_data_list = cfg.getStringList("hologram." + i);
+                holo_list.add(single_data_list);
+            }
+        }
+
+        return holo_list;
+    }
+
+    public static void despawnAllHolos(World world) {
+        for (List<String> list : getHolos()) {
+            if (!(list.size() <= 0)) {
+                String data = list.get(list.size() - 1);
+                System.out.println(data);
+                int entityID = Integer.parseInt(data.split(",")[4]);
+                for (Entity entity : world.getEntities()) {
+                    if (entity.getEntityId() == entityID) {
+                        System.out.println("Entity removing...");
+                        entity.remove();
+                    }
+                }
+            }
+        }
+    }
 
 }

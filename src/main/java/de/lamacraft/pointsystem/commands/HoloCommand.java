@@ -20,7 +20,7 @@ import java.util.List;
 
 public class HoloCommand implements CommandExecutor, TabCompleter {
 
-    private static final FileConfiguration cfg = FileManager.getConfigFileConfiguration();
+    private static FileConfiguration cfg = FileManager.getConfigFileConfiguration();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -39,7 +39,8 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                 holo.setGravity(false);
                 HologramManager.saveHolo(holo, HologramManager.getNextID(), holo.getEntityId());
                 p.sendMessage("§aHolo created!");
-                return true;
+                cfg = FileManager.getConfigFileConfiguration();
+                return false;
             } else if (args.length == 2 && args[0].equalsIgnoreCase("remove")) {
 
                 int id;
@@ -51,25 +52,33 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                 }
                 if (cfg.get("hologram." + id) != null) {
                     List<String> list = cfg.getStringList("hologram." + id);
-                    String string = list.get(list.size() - 1);
-                    String entityID = string.split(",")[4];
-                    for (Entity entity : p.getWorld().getEntities()) {
-                        if (entity instanceof ArmorStand) {
-                            if (entity.getCustomName() != null) {
-                                if (entity.getEntityId() == Integer.parseInt(entityID)) {
-                                    entity.remove();
-                                    cfg.set("hologram." + id, null);
-                                    cfg.set("id", 0);
-                                    try {
-                                        cfg.save(FileManager.getConfigFile());
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
+                    if (!(list.size() <= 0)) {
+                        String string = list.get(list.size() - 1);
+                        String entityID = string.split(",")[4];
+                        p.sendMessage("Entity ID: " + entityID);
+                        p.sendMessage("Data: " + string);
+                        for (Entity entity : p.getWorld().getEntities()) {
+                            if (entity instanceof ArmorStand) {
+                                if (entity.getCustomName() != null) {
+                                    if (entity.getEntityId() == Integer.parseInt(entityID)) {
+                                        entity.remove();
+                                        cfg.set("hologram." + id, null);
+                                        try {
+                                            cfg.save(FileManager.getConfigFile());
+                                            p.sendMessage("DEBUG --> Holo should be removed from config");
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        p.sendMessage("§aHolo removed!");
+                                        cfg = FileManager.getConfigFileConfiguration();
+                                        return false;
                                     }
-                                    p.sendMessage("§aHolo removed!");
-                                    return true;
                                 }
                             }
                         }
+                    } else {
+                        p.sendMessage("§4FEHLER!");
+                        return true;
                     }
                 } else {
                     p.sendMessage("§cDieses Hologramm gibt es nicht!");
@@ -103,6 +112,7 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                 for (int i = cfg.getInt("id") - 1; i >= 0; i--) {
                     if (cfg.get("hologram." + i) != null) {
                         list.add(Integer.toString(i));
+                        sender.sendMessage("DEBUG --> ADDED INT TO LIST!" + i);
                     }
                 }
 
