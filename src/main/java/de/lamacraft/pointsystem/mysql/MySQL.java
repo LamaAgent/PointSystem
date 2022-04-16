@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MySQL {
@@ -53,26 +52,5 @@ public class MySQL {
         }
     }
 
-    public static void update(String qry) {
-        if (isConnected()) {
-            try {
-                con.createStatement().executeUpdate(qry);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static ResultSet getResult(String qry) {
-        if (isConnected()) {
-            try {
-                return con.createStatement().executeQuery(qry);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return null;
-    }
 
 }

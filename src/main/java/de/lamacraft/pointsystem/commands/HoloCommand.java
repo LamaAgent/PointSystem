@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HoloCommand implements CommandExecutor, TabCompleter {
 
@@ -42,7 +43,7 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                 holo.setGravity(false);
 
                 HologramManager.cfg = FileManager.getHologramsFileConfiguration();
-                HologramManager.saveHolo(holo, HologramManager.getNextID(), holo.getEntityId());
+                HologramManager.saveHolo(holo, HologramManager.getNextID(), holo.getEntityId(), null);
                 p.sendMessage("§aHolo created!");
                 cfg = FileManager.getHologramsFileConfiguration();
                 return false;
@@ -114,9 +115,25 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                         }
                         String final_text = text.toString().trim();
 
+                        Player player = null;
+
                         if (args[2].contains("%Lama_Agent%")) {
-                            final_text = String.valueOf(PointsAPI.getPoints(Bukkit.getPlayer("Lama_Agent").getUniqueId()));
+                            player = Bukkit.getPlayer("Lama_Agent");
+                            final_text = String.valueOf(PointsAPI.getPoints(Objects.requireNonNull(player).getUniqueId()));
+                        } else if (args[2].contains("%Mikyoto%")) {
+                            player = Bukkit.getPlayer("Mikyoto");
+                            final_text = String.valueOf(PointsAPI.getPoints(Objects.requireNonNull(player).getUniqueId()));
+                        } else if (args[2].contains("%DasFlexe_06%")) {
+                            player = Bukkit.getPlayer("DasFlexe_06");
+                            final_text = String.valueOf(PointsAPI.getPoints(Objects.requireNonNull(player).getUniqueId()));
+                        } else if (args[2].contains("%fancy2000%")) {
+                            player = Bukkit.getPlayer("fancy2000");
+                            final_text = String.valueOf(PointsAPI.getPoints(Objects.requireNonNull(player).getUniqueId()));
+                        } else if (args[2].contains("%Tino748%")) {
+                            player = Bukkit.getPlayer("Tino748");
+                            final_text = String.valueOf(PointsAPI.getPoints(Objects.requireNonNull(player).getUniqueId()));
                         }
+
 
                         ArmorStand holo = (ArmorStand) p.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
                         holo.setVisible(false);
@@ -124,11 +141,10 @@ public class HoloCommand implements CommandExecutor, TabCompleter {
                         holo.setCustomName(ChatColor.BLUE + final_text);
                         holo.setGravity(false);
 
-
                         int entityID = holo.getEntityId();
 
 
-                        HologramManager.saveHolo(holo, HologramManager.getNextID(), entityID);
+                        HologramManager.saveHolo(holo, HologramManager.getNextID(), entityID, player);
                         HologramManager.cfg = FileManager.getHologramsFileConfiguration();
                         cfg = FileManager.getHologramsFileConfiguration();
                         p.sendMessage("§aLine added!");

@@ -14,6 +14,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
 public class Main extends JavaPlugin {
 
     public static String webhook_url;
@@ -73,10 +75,10 @@ public class Main extends JavaPlugin {
     }
 
     public void registerCommands() {
-        Bukkit.getPluginCommand("points").setExecutor(new PointsCommand());
-        Bukkit.getPluginCommand("shop").setExecutor(new ShopCommand());
-        Bukkit.getPluginCommand("holo").setExecutor(new HoloCommand());
-        Bukkit.getPluginCommand("maintance").setExecutor(new MaintanceCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("points")).setExecutor(new PointsCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("shop")).setExecutor(new ShopCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("holo")).setExecutor(new HoloCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("maintance")).setExecutor(new MaintanceCommand());
     }
 
     public void setupListeners() {

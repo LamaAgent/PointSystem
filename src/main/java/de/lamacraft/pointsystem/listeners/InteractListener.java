@@ -13,17 +13,18 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.Objects;
+
 public class InteractListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         if (e.hasBlock()) {
-            if (e.getClickedBlock().getType() == Material.CHEST) {
-                if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                    if (e.getClickedBlock().getState() instanceof TileState) {
+            if (Objects.requireNonNull(e.getClickedBlock()).getType() == Material.CHEST) {
+                if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                    if (e.getClickedBlock().getState() instanceof TileState state) {
 
-                        TileState state = (TileState) e.getClickedBlock().getState();
                         PersistentDataContainer container = state.getPersistentDataContainer();
 
                         NamespacedKey key = new NamespacedKey(Main.getInstance(), "shop-chests");
@@ -32,7 +33,7 @@ public class InteractListener implements Listener {
                                 e.setCancelled(true);
                                 InventoryManager.createInventory(p);
                             }
-                            }
+                        }
                         }
                     }
                 }

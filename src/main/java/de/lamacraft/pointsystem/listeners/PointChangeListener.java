@@ -3,6 +3,7 @@ package de.lamacraft.pointsystem.listeners;
 import de.lamacraft.pointsystem.Events.PointChangeEvent;
 import de.lamacraft.pointsystem.api.PointsAPI;
 import de.lamacraft.pointsystem.main.Main;
+import de.lamacraft.pointsystem.utils.HologramManager;
 import de.lamacraft.pointsystem.utils.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -22,6 +23,9 @@ public class PointChangeListener implements Listener {
 
         ScoreboardManager.updateScoreboard(p);
 
+        HologramManager.despawnAllHolos(Bukkit.getWorld("world"));
+        HologramManager.spawnHolos();
+
         if (PointsAPI.getPoints(p.getUniqueId()) >= 1000000) {
             for (Player players : Bukkit.getOnlinePlayers()) {
 //                if(!players.hasPermission("lamacraft.win_success")) {
@@ -35,7 +39,7 @@ public class PointChangeListener implements Listener {
 
                         @Override
                         public void run() {
-                            if (!(i >= 10)) {
+                            if (!(i >= 15)) {
                                 Firework firework = players.getWorld().spawn(players.getLocation(), Firework.class);
                                 FireworkMeta data = firework.getFireworkMeta();
                                 data.addEffect(FireworkEffect.builder().
@@ -43,6 +47,8 @@ public class PointChangeListener implements Listener {
                                         withColor(Color.AQUA).
                                         with(FireworkEffect.Type.BALL_LARGE).
                                         withFlicker().
+                                        withFade(Color.RED).
+                                        withTrail().
                                         build()
                                 );
                                 data.setPower(1);

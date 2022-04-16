@@ -19,8 +19,7 @@ public class BlockPlaceListener implements Listener {
         Player p = e.getPlayer();
         if (e.getItemInHand().isSimilar(ItemManager.getShop_chest())) {
             if (e.getBlock().getType() == Material.CHEST) {
-                if (e.getBlock().getState() instanceof TileState) {
-                    TileState state = (TileState) e.getBlock().getState();
+                if (e.getBlock().getState() instanceof TileState state) {
                     PersistentDataContainer container = state.getPersistentDataContainer();
 
                     NamespacedKey key = new NamespacedKey(Main.getInstance(), "shop-chests");
@@ -28,7 +27,7 @@ public class BlockPlaceListener implements Listener {
 
                     state.update();
 
-                    e.getPlayer().sendMessage("§aShop erstellt!");
+                    p.sendMessage("§aShop erstellt!");
                 }
             }
         }

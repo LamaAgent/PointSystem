@@ -10,14 +10,14 @@ import java.util.List;
 
 public class ItemManager {
 
-    private static ItemStack golden_apple_show = new ItemStack(Material.GOLDEN_APPLE);
-    private static ItemStack golden_carrot_show = new ItemStack(Material.GOLDEN_CARROT);
-    private static ItemStack ender_pearl_show = new ItemStack(Material.ENDER_PEARL);
-    private static ItemStack diamond_sword_show = new ItemStack(Material.DIAMOND_SWORD);
-    private static ItemStack diamond_pickaxe_show = new ItemStack(Material.DIAMOND_PICKAXE);
-    private static ItemStack god_sword_show = new ItemStack(Material.NETHERITE_SWORD);
+    private static final ItemStack golden_apple_show = new ItemStack(Material.GOLDEN_APPLE);
+    private static final ItemStack golden_carrot_show = new ItemStack(Material.GOLDEN_CARROT);
+    private static final ItemStack ender_pearl_show = new ItemStack(Material.ENDER_PEARL);
+    private static final ItemStack diamond_sword_show = new ItemStack(Material.DIAMOND_SWORD);
+    private static final ItemStack diamond_pickaxe_show = new ItemStack(Material.DIAMOND_PICKAXE);
+    private static final ItemStack god_sword_show = new ItemStack(Material.NETHERITE_SWORD);
 
-    private static ItemStack shop_chest = new ItemStack(Material.CHEST);
+    private static final ItemStack shop_chest = new ItemStack(Material.CHEST);
 
     public static ItemStack getGolden_apple_show() {
         ItemMeta meta = golden_apple_show.getItemMeta();
