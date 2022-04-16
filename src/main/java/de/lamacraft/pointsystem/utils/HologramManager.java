@@ -77,9 +77,6 @@ public class HologramManager {
                     List<String> new_list = new ArrayList<>();
                     new_list.add(new_data);
                     cfg.set("hologram." + i, new_list);
-                    for (String s : new_list) {
-                        System.out.println("New Datas: " + s);
-                    }
                     try {
                         cfg.save(FileManager.getHologramsFile());
                     } catch (IOException e) {
@@ -107,11 +104,9 @@ public class HologramManager {
         for (List<String> list : getHolos()) {
             if (!(list.size() <= 0)) {
                 String data = list.get(list.size() - 1);
-                System.out.println(data);
                 int entityID = Integer.parseInt(data.split(",")[4]);
                 for (Entity entity : world.getEntities()) {
                     if (entity.getEntityId() == entityID) {
-                        System.out.println("Entity removing...");
                         entity.remove();
                     }
                 }

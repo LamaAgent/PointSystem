@@ -17,7 +17,6 @@ public class JoinListener implements Listener {
     public void onPlayerJoin(final PlayerJoinEvent e) {
         final Player p = e.getPlayer();
 
-
         if (PointsAPI.getPoints(p.getUniqueId()) == -1) {
             try {
                 final PreparedStatement ps = MySQL.con.prepareStatement("INSERT INTO points(playername, uuid, value) VALUES (?, ?, ?)");
