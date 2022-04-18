@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) by Lama_Agent (2022).
+ * All rights reserved
+ */
+
 package de.lamacraft.pointsystem.utils.managers;
 
 import de.lamacraft.pointsystem.api.PointsAPI;

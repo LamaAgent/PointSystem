@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) by Lama_Agent (2022).
+ * All rights reserved
+ */
+
 package de.lamacraft.pointsystem.utils;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -244,14 +249,7 @@ public class DiscordWebhook {
             return this;
         }
 
-        private class Footer {
-            private final String text;
-            private final String iconUrl;
-
-            private Footer(String text, String iconUrl) {
-                this.text = text;
-                this.iconUrl = iconUrl;
-            }
+        private record Footer(String text, String iconUrl) {
 
             private String getText() {
                 return text;
@@ -262,40 +260,21 @@ public class DiscordWebhook {
             }
         }
 
-        private class Thumbnail {
-            private final String url;
-
-            private Thumbnail(String url) {
-                this.url = url;
-            }
+        private record Thumbnail(String url) {
 
             private String getUrl() {
                 return url;
             }
         }
 
-        private class Image {
-            private final String url;
-
-            private Image(String url) {
-                this.url = url;
-            }
+        private record Image(String url) {
 
             private String getUrl() {
                 return url;
             }
         }
 
-        private class Author {
-            private final String name;
-            private final String url;
-            private final String iconUrl;
-
-            private Author(String name, String url, String iconUrl) {
-                this.name = name;
-                this.url = url;
-                this.iconUrl = iconUrl;
-            }
+        private record Author(String name, String url, String iconUrl) {
 
             private String getName() {
                 return name;
@@ -310,16 +289,7 @@ public class DiscordWebhook {
             }
         }
 
-        private class Field {
-            private final String name;
-            private final String value;
-            private final boolean inline;
-
-            private Field(String name, String value, boolean inline) {
-                this.name = name;
-                this.value = value;
-                this.inline = inline;
-            }
+        private record Field(String name, String value, boolean inline) {
 
             private String getName() {
                 return name;
@@ -335,7 +305,7 @@ public class DiscordWebhook {
         }
     }
 
-    private class JSONObject {
+    private static class JSONObject {
 
         private final HashMap<String, Object> map = new HashMap<>();
 
