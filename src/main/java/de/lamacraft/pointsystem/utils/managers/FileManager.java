@@ -1,4 +1,4 @@
-package de.lamacraft.pointsystem.utils;
+package de.lamacraft.pointsystem.utils.managers;
 
 
 import de.lamacraft.pointsystem.main.Main;
@@ -62,7 +62,7 @@ public class FileManager {
         FileConfiguration cfg = getConfigFileConfiguration();
         Main.getInstance().prefix = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cfg.getString("Prefix"))) + " §r";
 
-        Main.webhook_url = cfg.getString("DiscordWebhook");
+        Main.getInstance().webhook_url = cfg.getString("DiscordWebhook");
     }
 
     public static void setStandardMySQL() {

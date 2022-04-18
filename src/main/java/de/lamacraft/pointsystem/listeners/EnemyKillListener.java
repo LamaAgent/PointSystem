@@ -1,7 +1,7 @@
 package de.lamacraft.pointsystem.listeners;
 
 import de.lamacraft.pointsystem.api.PointsAPI;
-import de.lamacraft.pointsystem.utils.FileManager;
+import de.lamacraft.pointsystem.utils.managers.FileManager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

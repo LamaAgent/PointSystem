@@ -1,4 +1,4 @@
-package de.lamacraft.pointsystem.utils;
+package de.lamacraft.pointsystem.utils.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

@@ -1,6 +1,6 @@
 package de.lamacraft.pointsystem.commands;
 
-import de.lamacraft.pointsystem.utils.FileManager;
+import de.lamacraft.pointsystem.utils.managers.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

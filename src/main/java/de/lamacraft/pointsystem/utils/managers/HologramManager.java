@@ -1,4 +1,4 @@
-package de.lamacraft.pointsystem.utils;
+package de.lamacraft.pointsystem.utils.managers;
 
 import de.lamacraft.pointsystem.api.PointsAPI;
 import org.bukkit.Bukkit;

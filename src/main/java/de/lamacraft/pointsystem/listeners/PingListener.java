@@ -1,6 +1,6 @@
 package de.lamacraft.pointsystem.listeners;
 
-import de.lamacraft.pointsystem.utils.FileManager;
+import de.lamacraft.pointsystem.utils.managers.FileManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;

@@ -1,8 +1,8 @@
 package de.lamacraft.pointsystem.commands;
 
 import de.lamacraft.pointsystem.api.PointsAPI;
-import de.lamacraft.pointsystem.utils.FileManager;
-import de.lamacraft.pointsystem.utils.HologramManager;
+import de.lamacraft.pointsystem.utils.managers.FileManager;
+import de.lamacraft.pointsystem.utils.managers.HologramManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

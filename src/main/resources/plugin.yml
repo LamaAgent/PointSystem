@@ -11,3 +11,5 @@ commands:
     description: Verwaltet die Hologramme!
   maintance:
     description: (De)aktiviert den Wartungsmodus!
+  resetwinner:
+    description: Setzt den Gewinner zurück!

@@ -2,7 +2,7 @@ package de.lamacraft.pointsystem.listeners;
 
 import de.lamacraft.pointsystem.api.PointsAPI;
 import de.lamacraft.pointsystem.main.Main;
-import de.lamacraft.pointsystem.utils.ItemManager;
+import de.lamacraft.pointsystem.utils.managers.ItemManager;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

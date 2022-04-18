@@ -1,24 +1,24 @@
 package de.lamacraft.pointsystem.main;
 
-import de.lamacraft.pointsystem.commands.HoloCommand;
-import de.lamacraft.pointsystem.commands.MaintanceCommand;
-import de.lamacraft.pointsystem.commands.PointsCommand;
-import de.lamacraft.pointsystem.commands.ShopCommand;
+import de.lamacraft.pointsystem.commands.*;
 import de.lamacraft.pointsystem.listeners.*;
 import de.lamacraft.pointsystem.mysql.MySQL;
-import de.lamacraft.pointsystem.utils.FileManager;
-import de.lamacraft.pointsystem.utils.HologramManager;
+import de.lamacraft.pointsystem.utils.DiscordWebhook;
 import de.lamacraft.pointsystem.utils.KillController;
-import de.lamacraft.pointsystem.utils.ScoreboardManager;
+import de.lamacraft.pointsystem.utils.managers.FileManager;
+import de.lamacraft.pointsystem.utils.managers.HologramManager;
+import de.lamacraft.pointsystem.utils.managers.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
-    public static String webhook_url;
+    public String webhook_url;
     private static Main instance;
 
     public String prefix;
@@ -45,6 +45,17 @@ public class Main extends JavaPlugin {
 
         KillController.startKillTimer();
 
+        DiscordWebhook webhook = new DiscordWebhook(webhook_url);
+        webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                .setDescription("Der Server wurde gestartet!")
+                .setColor(Color.GREEN)
+                .setAuthor("SERVER", "", "https://i.ibb.co/Dw1CHgT/server-icon.png"));
+
+        try {
+            webhook.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§aPointsSystem erfolgreich aktiviert!");
     }
@@ -57,6 +68,18 @@ public class Main extends JavaPlugin {
         KillController.stopKillTimer();
 
         HologramManager.despawnAllHolos(Bukkit.getWorld("world"));
+
+        DiscordWebhook webhook = new DiscordWebhook(webhook_url);
+        webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                .setDescription("Der Server wurde gestoppt!!")
+                .setColor(Color.RED)
+                .setAuthor("SERVER", "", "https://i.ibb.co/Dw1CHgT/server-icon.png"));
+
+        try {
+            webhook.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§cPointsSystem erfolgreich deaktiviert!");
     }
@@ -79,6 +102,7 @@ public class Main extends JavaPlugin {
         Objects.requireNonNull(Bukkit.getPluginCommand("shop")).setExecutor(new ShopCommand());
         Objects.requireNonNull(Bukkit.getPluginCommand("holo")).setExecutor(new HoloCommand());
         Objects.requireNonNull(Bukkit.getPluginCommand("maintance")).setExecutor(new MaintanceCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("resetwinner")).setExecutor(new ResetWinnerCommand());
     }
 
     public void setupListeners() {

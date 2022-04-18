@@ -1,7 +1,7 @@
 package de.lamacraft.pointsystem.listeners;
 
 import de.lamacraft.pointsystem.main.Main;
-import de.lamacraft.pointsystem.utils.ItemManager;
+import de.lamacraft.pointsystem.utils.managers.ItemManager;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.TileState;
