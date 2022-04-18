@@ -12,7 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
@@ -33,19 +32,18 @@ public class ClickListener implements Listener {
                         String output = WordUtils.capitalizeFully(itemType.replace("_", " "));
                         p.sendMessage("§aDu hast dir erfolgreich ein/e/en §6" + output + " §agekauft!");
                         p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+                        e.setCancelled(true);
                     }
                 }
             }
 
-            e.setCancelled(true);
-        } else if (e.getView().getTopInventory().getType() == InventoryType.CHEST) {
-//            && e.getView().getTitle().equalsIgnoreCase("§6SELLING")
+
             if (e.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
                 if (e.getClickedInventory() == p.getInventory()) {
                     if (Objects.requireNonNull(e.getCurrentItem()).getType() == Material.DIAMOND) {
                         ItemStack diamonds = e.getCurrentItem();
                         int points = diamonds.getAmount() * 100;
-                        Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> e.getView().getTopInventory().clear(), 1L);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> e.getView().getTopInventory().remove(Material.DIAMOND), 1L);
                         PointsAPI.addPoints(p.getUniqueId(), points, null);
                         p.sendMessage(Main.getInstance().prefix + "§aDu hast §6" + points + " §aPunkte bekommen!");
                     }

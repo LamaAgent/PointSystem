@@ -50,6 +50,7 @@ public class FileManager {
         cfg.options().copyDefaults(true);
         cfg.addDefault("Prefix", "&8[&6PointSystem&8]");
         cfg.addDefault("DiscordWebhook", "YOUR TOKEN");
+        cfg.addDefault("winner", "");
         try {
             cfg.save(getConfigFile());
         } catch (IOException e) {
