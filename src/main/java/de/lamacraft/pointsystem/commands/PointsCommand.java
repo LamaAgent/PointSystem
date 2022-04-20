@@ -48,7 +48,7 @@ public class PointsCommand implements CommandExecutor, TabCompleter {
                 @SuppressWarnings("deprecation") final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                 if (args[0].equalsIgnoreCase("remove") && args[2].equalsIgnoreCase("all")) {
                     if (p.hasPermission(PointsCommand.remove_all_perm)) {
-                        PointsAPI.removePoints(target.getUniqueId(), 0, p, true);
+                        PointsAPI.removePoints(target.getUniqueId(), 0, true);
                         p.sendMessage(prefix + "§aDem Spieler §6" + target.getName() + " §awurden erfolgreich alle Punkte entfernt!");
                     } else {
                         p.sendMessage(prefix + "§cDazu hast keine Rechte!");
@@ -89,7 +89,7 @@ public class PointsCommand implements CommandExecutor, TabCompleter {
                             p.sendMessage(prefix + "§cDer Spieler besitzt nicht so viele Punkte!");
                             return true;
                         } else
-                            PointsAPI.removePoints(target.getUniqueId(), points, p, false);
+                            PointsAPI.removePoints(target.getUniqueId(), points, false);
                         p.sendMessage(prefix + "§aDem Spieler §6" + target.getName() + " §awurden erfolgreich §6" + points + " §aentfernt!");
                     } else {
                         p.sendMessage(prefix + "§cDazu hast keine Rechte!");

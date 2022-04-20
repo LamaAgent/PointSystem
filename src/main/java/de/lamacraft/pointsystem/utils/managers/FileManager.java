@@ -50,6 +50,14 @@ public class FileManager {
         return YamlConfiguration.loadConfiguration(getHologramsFile());
     }
 
+    public static File getItemPointsFile() {
+        return new File("plugins/PointSystem", "itempoints.yml");
+    }
+
+    public static FileConfiguration getItemPointsFileConfiguration() {
+        return YamlConfiguration.loadConfiguration(getItemPointsFile());
+    }
+
     public static void setStandardConfig() {
         FileConfiguration cfg = getConfigFileConfiguration();
         cfg.options().copyDefaults(true);
@@ -130,6 +138,43 @@ public class FileManager {
         cfg.addDefault("points.zombified_piglin", 10);
         try {
             cfg.save(getMobPointsFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setStandardItemPoints() {
+        FileConfiguration cfg = getItemPointsFileConfiguration();
+        cfg.options().copyDefaults(true);
+        //Ingots
+        cfg.addDefault("points.iron_ingot", 10);
+        cfg.addDefault("points.gold_ingot", 10);
+        cfg.addDefault("points.copper_ingot", 10);
+        cfg.addDefault("points.netherite_ingot", 10);
+
+        //Other Ores
+        cfg.addDefault("points.emerald", 10);
+        cfg.addDefault("points.lapis_lazuli", 10);
+        cfg.addDefault("points.redstone", 10);
+        cfg.addDefault("points.coal", 10);
+        cfg.addDefault("points.diamond", 10);
+
+        //Special Items
+        cfg.addDefault("points.dragon_egg", 10);
+        cfg.addDefault("points.sponge", 10);
+        cfg.addDefault("points.beacon", 10);
+        cfg.addDefault("points.shulker_box", 10);
+        cfg.addDefault("points.turtle_egg", 10);
+        cfg.addDefault("points.ender_pearl", 10);
+        cfg.addDefault("points.experience_bottle", 10);
+        cfg.addDefault("points.nether_star", 10);
+        cfg.addDefault("points.saddle", 10);
+        cfg.addDefault("points.name_tag", 10);
+        cfg.addDefault("points.heart_of_the_sea", 10);
+        cfg.addDefault("points.elytra", 10);
+
+        try {
+            cfg.save(getItemPointsFile());
         } catch (IOException e) {
             e.printStackTrace();
         }

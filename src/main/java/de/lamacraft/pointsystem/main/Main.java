@@ -93,6 +93,7 @@ public class Main extends JavaPlugin {
         FileManager.setStandardConfig();
         FileManager.setStandardMySQL();
         FileManager.setStandardMobPoints();
+        FileManager.setStandardItemPoints();
         FileManager.readConfig();
         FileManager.readMySQL();
     }
@@ -114,7 +115,7 @@ public class Main extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
 
-        Bukkit.getPluginManager().registerEvents(new ClickListener(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new EnemyKillListener(), this);
 

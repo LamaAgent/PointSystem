@@ -118,14 +118,14 @@ public class PointsAPI {
         }
     }
 
-    public static void removePoints(final UUID uuid, final int amount, final Player sendingPlayer, final boolean all) {
+    public static void removePoints(final UUID uuid, final int amount, final boolean all) {
         final int current = getPoints(uuid);
         if (!all) {
-            setPoints(uuid, current - amount, sendingPlayer);
+            setPoints(uuid, current - amount, null);
             PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
             Bukkit.getPluginManager().callEvent(e);
         } else {
-            setPoints(uuid, 0, sendingPlayer);
+            setPoints(uuid, 0, null);
             PointChangeEvent e = new PointChangeEvent(Bukkit.getPlayer(uuid), amount);
             Bukkit.getPluginManager().callEvent(e);
         }
