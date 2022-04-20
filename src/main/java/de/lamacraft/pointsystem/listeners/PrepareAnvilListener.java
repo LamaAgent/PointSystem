@@ -24,64 +24,14 @@ public class PrepareAnvilListener implements Listener {
 
         ItemStack slot2 = inventory.getItem(1);
 
-        inventory.setRepairCost(30);
-
         if (slot1 != null && slot2 != null) {
 
-            if (isArmor(slot1)) {
-
-
-                for (ItemStack enchantment_book : ItemManager.getProtectionEnchants()) {
-                    if (slot2.isSimilar(enchantment_book)) {
-
-                        EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
-                        if (esm != null) {
-                            int level = esm.getStoredEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
-
-                            ItemStack result_item = slot1.clone();
-                            result_item.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, level);
-                            e.setResult(result_item);
-
-                        }
-                    }
-                }
-                for (ItemStack enchantment_book : ItemManager.getFortuneEnchants()) {
-                    if (slot2.isSimilar(enchantment_book)) {
-                        EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
-                        if (esm != null) {
-                            int level = esm.getStoredEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
-                            ItemStack result_item = slot1.clone();
-                            result_item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, level);
-                            e.setResult(result_item);
-                        }
-                    }
-                }
-                for (ItemStack enchantment_book : ItemManager.getPowerEnchants()) {
-                    if (slot2.isSimilar(enchantment_book)) {
-                        EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
-                        if (esm != null) {
-                            int level = esm.getStoredEnchantLevel(Enchantment.ARROW_DAMAGE);
-                            ItemStack result_item = slot1.clone();
-                            result_item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, level);
-                            e.setResult(result_item);
-                        }
-                    }
-                }
-                for (ItemStack enchantment_book : ItemManager.getSharpnessEnchants()) {
-                    if (slot2.isSimilar(enchantment_book)) {
-                        EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
-                        if (esm != null) {
-                            int level = esm.getStoredEnchantLevel(Enchantment.DAMAGE_ALL);
-                            ItemStack result_item = slot1.clone();
-                            result_item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, level);
-                            e.setResult(result_item);
-                        }
-                    }
-                }
+            if (isEquipment(slot1)) {
                 for (ItemStack enchantment_book : ItemManager.getUnbreakingEnchants()) {
                     if (slot2.isSimilar(enchantment_book)) {
                         EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
                         if (esm != null) {
+                            inventory.setRepairCost(30);
                             int level = esm.getStoredEnchantLevel(Enchantment.DURABILITY);
                             ItemStack result_item = slot1.clone();
                             result_item.addUnsafeEnchantment(Enchantment.DURABILITY, level);
@@ -89,6 +39,90 @@ public class PrepareAnvilListener implements Listener {
                         }
                     }
                 }
+                if (isArmor(slot1)) {
+                    for (ItemStack enchantment_book : ItemManager.getProtectionEnchants()) {
+                        if (slot2.isSimilar(enchantment_book)) {
+
+                            EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
+                            if (esm != null) {
+                                inventory.setRepairCost(30);
+                                int level = esm.getStoredEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
+
+                                ItemStack result_item = slot1.clone();
+                                result_item.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, level);
+                                e.setResult(result_item);
+
+                            }
+                        }
+                    }
+                } else if (isSword(slot1)) {
+                    for (ItemStack enchantment_book : ItemManager.getSharpnessEnchants()) {
+                        if (slot2.isSimilar(enchantment_book)) {
+                            EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
+                            if (esm != null) {
+                                inventory.setRepairCost(30);
+                                int level = esm.getStoredEnchantLevel(Enchantment.DAMAGE_ALL);
+                                ItemStack result_item = slot1.clone();
+                                result_item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, level);
+                                e.setResult(result_item);
+                            }
+                        }
+                    }
+                } else if (isPickaxe(slot1)) {
+                    for (ItemStack enchantment_book : ItemManager.getFortuneEnchants()) {
+                        if (slot2.isSimilar(enchantment_book)) {
+                            EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
+                            if (esm != null) {
+                                inventory.setRepairCost(30);
+                                int level = esm.getStoredEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+                                ItemStack result_item = slot1.clone();
+                                result_item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, level);
+                                e.setResult(result_item);
+                            }
+                        }
+                    }
+                } else if (isAxe(slot1)) {
+                    for (ItemStack enchantment_book : ItemManager.getSharpnessEnchants()) {
+                        if (slot2.isSimilar(enchantment_book)) {
+                            EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
+                            if (esm != null) {
+                                inventory.setRepairCost(30);
+                                int level = esm.getStoredEnchantLevel(Enchantment.DAMAGE_ALL);
+                                ItemStack result_item = slot1.clone();
+                                result_item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, level);
+                                e.setResult(result_item);
+                            }
+                        }
+                    }
+                    for (ItemStack enchantment_book : ItemManager.getFortuneEnchants()) {
+                        if (slot2.isSimilar(enchantment_book)) {
+                            EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
+                            if (esm != null) {
+                                inventory.setRepairCost(30);
+                                int level = esm.getStoredEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
+                                ItemStack result_item = slot1.clone();
+                                result_item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, level);
+                                e.setResult(result_item);
+                            }
+                        }
+                    }
+                } else if (isBow(slot1)) {
+                    for (ItemStack enchantment_book : ItemManager.getPowerEnchants()) {
+                        if (slot2.isSimilar(enchantment_book)) {
+                            EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
+                            if (esm != null) {
+                                inventory.setRepairCost(30);
+                                int level = esm.getStoredEnchantLevel(Enchantment.ARROW_DAMAGE);
+                                ItemStack result_item = slot1.clone();
+                                result_item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, level);
+                                e.setResult(result_item);
+                            }
+                        }
+                    }
+                } else
+                    return;
+
+
             }
         }
     }
@@ -101,6 +135,38 @@ public class PrepareAnvilListener implements Listener {
                 || typeNameString.endsWith("_CHESTPLATE")
                 || typeNameString.endsWith("_LEGGINGS")
                 || typeNameString.endsWith("_BOOTS");
+    }
+
+    private boolean isSword(final ItemStack itemStack) {
+        if (itemStack == null)
+            return false;
+        final String typeNameString = itemStack.getType().name();
+        return typeNameString.endsWith("_SWORD");
+    }
+
+    private boolean isPickaxe(final ItemStack itemStack) {
+        if (itemStack == null)
+            return false;
+        final String typeNameString = itemStack.getType().name();
+        return typeNameString.endsWith("_PICKAXE");
+    }
+
+    private boolean isAxe(final ItemStack itemStack) {
+        if (itemStack == null)
+            return false;
+        final String typeNameString = itemStack.getType().name();
+        return typeNameString.endsWith("_AXE");
+    }
+
+    private boolean isBow(final ItemStack itemStack) {
+        if (itemStack == null)
+            return false;
+        final String typeNameString = itemStack.getType().name();
+        return typeNameString.equalsIgnoreCase("BOW");
+    }
+
+    private boolean isEquipment(final ItemStack itemStack) {
+        return isArmor(itemStack) || isSword(itemStack) || isPickaxe(itemStack) || isAxe(itemStack) || isBow(itemStack);
     }
 
 }
