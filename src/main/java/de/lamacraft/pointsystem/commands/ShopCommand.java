@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class ShopCommand implements CommandExecutor {
     @Override
@@ -18,7 +19,26 @@ public class ShopCommand implements CommandExecutor {
         if (sender instanceof Player p) {
             p.getInventory().addItem(ItemManager.getShop_chest());
 
-            p.getInventory().addItem(ItemManager.getProtection_seven_book());
+            for (ItemStack protectionEnchant : ItemManager.getProtectionEnchants()) {
+                p.getInventory().addItem(protectionEnchant);
+            }
+
+            for (ItemStack enchant : ItemManager.getUnbreakingEnchants()) {
+                p.getInventory().addItem(enchant);
+            }
+
+            for (ItemStack enchant : ItemManager.getPowerEnchants()) {
+                p.getInventory().addItem(enchant);
+            }
+
+            for (ItemStack enchant : ItemManager.getSharpnessEnchants()) {
+                p.getInventory().addItem(enchant);
+            }
+
+            for (ItemStack enchant : ItemManager.getFortuneEnchants()) {
+                p.getInventory().addItem(enchant);
+            }
+
         }
 
         return false;

@@ -109,7 +109,6 @@ public class Main extends JavaPlugin {
         Objects.requireNonNull(Bukkit.getPluginCommand("holo")).setExecutor(new HoloCommand());
         Objects.requireNonNull(Bukkit.getPluginCommand("maintance")).setExecutor(new MaintanceCommand());
         Objects.requireNonNull(Bukkit.getPluginCommand("resetwinner")).setExecutor(new ResetWinnerCommand());
-        Bukkit.getPluginCommand("addenchantment").setExecutor(new AddEnchantmentCommand());
     }
 
     public void setupListeners() {
@@ -131,5 +130,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PingListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new LoginListener(), this);
+
+        Bukkit.getPluginManager().registerEvents(new PrepareAnvilListener(), this);
     }
 }

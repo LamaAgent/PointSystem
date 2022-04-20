@@ -25,9 +25,20 @@ public class ItemManager {
     private static final ItemStack diamond_pickaxe_show = new ItemStack(Material.DIAMOND_PICKAXE);
     private static final ItemStack god_sword_show = new ItemStack(Material.NETHERITE_SWORD);
 
-    private static final ItemStack protection_seven_book = new ItemStack(Material.ENCHANTED_BOOK);
     private static final ItemStack protection_six_book = new ItemStack(Material.ENCHANTED_BOOK);
     private static final ItemStack protection_five_book = new ItemStack(Material.ENCHANTED_BOOK);
+
+    private static final ItemStack fortune_four_book = new ItemStack(Material.ENCHANTED_BOOK);
+    private static final ItemStack fortune_five_book = new ItemStack(Material.ENCHANTED_BOOK);
+
+    private static final ItemStack sharpness_six_book = new ItemStack(Material.ENCHANTED_BOOK);
+    private static final ItemStack sharpness_seven_book = new ItemStack(Material.ENCHANTED_BOOK);
+
+    private static final ItemStack power_six_book = new ItemStack(Material.ENCHANTED_BOOK);
+    private static final ItemStack power_seven_book = new ItemStack(Material.ENCHANTED_BOOK);
+
+    private static final ItemStack unbreaking_four_book = new ItemStack(Material.ENCHANTED_BOOK);
+    private static final ItemStack unbreaking_five_book = new ItemStack(Material.ENCHANTED_BOOK);
 
     private static final ItemStack shop_chest = new ItemStack(Material.CHEST);
 
@@ -85,13 +96,6 @@ public class ItemManager {
         return god_sword_show;
     }
 
-    public static ItemStack getProtection_seven_book() {
-        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) protection_seven_book.getItemMeta();
-        Objects.requireNonNull(meta).addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 7, true);
-        protection_seven_book.setItemMeta(meta);
-        return protection_seven_book;
-    }
-
     public static ItemStack getProtection_six_book() {
         EnchantmentStorageMeta meta = (EnchantmentStorageMeta) protection_six_book.getItemMeta();
         Objects.requireNonNull(meta).addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 6, true);
@@ -104,6 +108,63 @@ public class ItemManager {
         Objects.requireNonNull(meta).addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 5, true);
         protection_five_book.setItemMeta(meta);
         return protection_five_book;
+    }
+
+    public static ItemStack getFortune_four_book() {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) fortune_four_book.getItemMeta();
+        meta.addStoredEnchant(Enchantment.LOOT_BONUS_BLOCKS, 4, true);
+        fortune_four_book.setItemMeta(meta);
+        return fortune_four_book;
+    }
+
+    public static ItemStack getFortune_five_book() {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) fortune_five_book.getItemMeta();
+        meta.addStoredEnchant(Enchantment.LOOT_BONUS_BLOCKS, 5, true);
+        fortune_five_book.setItemMeta(meta);
+        return fortune_five_book;
+    }
+
+    public static ItemStack getPower_six_book() {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) power_six_book.getItemMeta();
+        meta.addStoredEnchant(Enchantment.ARROW_DAMAGE, 6, true);
+        power_six_book.setItemMeta(meta);
+        return power_six_book;
+    }
+
+    public static ItemStack getPower_seven_book() {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) power_seven_book.getItemMeta();
+        meta.addStoredEnchant(Enchantment.ARROW_DAMAGE, 7, true);
+        power_seven_book.setItemMeta(meta);
+        return power_seven_book;
+    }
+
+    public static ItemStack getSharpness_six_book() {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) sharpness_six_book.getItemMeta();
+        meta.addStoredEnchant(Enchantment.DAMAGE_ALL, 6, true);
+        sharpness_six_book.setItemMeta(meta);
+        return sharpness_six_book;
+    }
+
+    public static ItemStack getSharpness_seven_book() {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) sharpness_seven_book.getItemMeta();
+        meta.addStoredEnchant(Enchantment.DAMAGE_ALL, 7, true);
+        sharpness_seven_book.setItemMeta(meta);
+        return sharpness_seven_book;
+    }
+
+    public static ItemStack getUnbreaking_four_book() {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) unbreaking_four_book.getItemMeta();
+        meta.addStoredEnchant(Enchantment.DURABILITY, 4, true);
+        unbreaking_four_book.setItemMeta(meta);
+        return unbreaking_four_book;
+    }
+
+    public static ItemStack getUnbreaking_five_book() {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) unbreaking_five_book.getItemMeta();
+        assert meta != null;
+        meta.addStoredEnchant(Enchantment.DURABILITY, 5, true);
+        unbreaking_five_book.setItemMeta(meta);
+        return unbreaking_five_book;
     }
 
     public static List<ItemStack> getShowItems() {
@@ -121,14 +182,42 @@ public class ItemManager {
         List<ItemStack> protection_enchants = new ArrayList<>();
         protection_enchants.add(getProtection_five_book());
         protection_enchants.add(getProtection_six_book());
-        protection_enchants.add(getProtection_seven_book());
         return protection_enchants;
+    }
+
+    public static List<ItemStack> getFortuneEnchants() {
+        List<ItemStack> fortune_enchants = new ArrayList<>();
+        fortune_enchants.add(getFortune_four_book());
+        fortune_enchants.add(getFortune_five_book());
+        return fortune_enchants;
+    }
+
+    public static List<ItemStack> getPowerEnchants() {
+        List<ItemStack> power_enchants = new ArrayList<>();
+        power_enchants.add(getPower_six_book());
+        power_enchants.add(getPower_seven_book());
+        return power_enchants;
+    }
+
+    public static List<ItemStack> getSharpnessEnchants() {
+        List<ItemStack> sharpness_enchants = new ArrayList<>();
+        sharpness_enchants.add(getSharpness_six_book());
+        sharpness_enchants.add(getSharpness_seven_book());
+        return sharpness_enchants;
+    }
+
+    public static List<ItemStack> getUnbreakingEnchants() {
+        List<ItemStack> unbreaking_enchants = new ArrayList<>();
+        unbreaking_enchants.add(getUnbreaking_four_book());
+        unbreaking_enchants.add(getUnbreaking_five_book());
+        return unbreaking_enchants;
     }
 
     public static ItemStack getShop_chest() {
         ItemMeta meta = shop_chest.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Shop_Chest");
+        assert meta != null;
         meta.setLore(lore);
         meta.setDisplayName("Shop_Chest");
         shop_chest.setItemMeta(meta);
