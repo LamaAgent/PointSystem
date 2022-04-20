@@ -13,3 +13,5 @@ commands:
     description: (De)aktiviert den Wartungsmodus!
   resetwinner:
     description: Setzt den Gewinner zurück!
+  addenchantment:
+    description: Fügt ein Enchantment hinzu!

@@ -18,6 +18,7 @@ public class ShopCommand implements CommandExecutor {
         if (sender instanceof Player p) {
             p.getInventory().addItem(ItemManager.getShop_chest());
 
+            p.getInventory().addItem(ItemManager.getProtection_seven_book());
         }
 
         return false;

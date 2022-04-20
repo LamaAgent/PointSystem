@@ -36,7 +36,7 @@ public class InventoryClickListener implements Listener {
                             p.getInventory().addItem(item);
                             String itemType = item.getType().toString();
                             String output = WordUtils.capitalizeFully(itemType.replace("_", " "));
-                            p.sendMessage("§aDu hast dir erfolgreich ein/e/en §6" + output + " §agekauft!");
+                            p.sendMessage("§aDu hast dir erfolgreich §6" + output + " §agekauft!");
                             p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
                             e.setCancelled(true);
                         }
