@@ -24,6 +24,8 @@ public class PrepareAnvilListener implements Listener {
 
         ItemStack slot2 = inventory.getItem(1);
 
+        inventory.setRepairCost(30);
+
         if (slot1 != null && slot2 != null) {
 
             if (isArmor(slot1)) {
@@ -36,7 +38,7 @@ public class PrepareAnvilListener implements Listener {
                         if (esm != null) {
                             int level = esm.getStoredEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
 
-                            ItemStack result_item = new ItemStack(slot1.getType());
+                            ItemStack result_item = slot1.clone();
                             result_item.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, level);
                             e.setResult(result_item);
 
@@ -48,7 +50,7 @@ public class PrepareAnvilListener implements Listener {
                         EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
                         if (esm != null) {
                             int level = esm.getStoredEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
-                            ItemStack result_item = new ItemStack(slot1.getType());
+                            ItemStack result_item = slot1.clone();
                             result_item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, level);
                             e.setResult(result_item);
                         }
@@ -59,7 +61,7 @@ public class PrepareAnvilListener implements Listener {
                         EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
                         if (esm != null) {
                             int level = esm.getStoredEnchantLevel(Enchantment.ARROW_DAMAGE);
-                            ItemStack result_item = new ItemStack(slot1.getType());
+                            ItemStack result_item = slot1.clone();
                             result_item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, level);
                             e.setResult(result_item);
                         }
@@ -70,7 +72,7 @@ public class PrepareAnvilListener implements Listener {
                         EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
                         if (esm != null) {
                             int level = esm.getStoredEnchantLevel(Enchantment.DAMAGE_ALL);
-                            ItemStack result_item = new ItemStack(slot1.getType());
+                            ItemStack result_item = slot1.clone();
                             result_item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, level);
                             e.setResult(result_item);
                         }
@@ -81,7 +83,7 @@ public class PrepareAnvilListener implements Listener {
                         EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
                         if (esm != null) {
                             int level = esm.getStoredEnchantLevel(Enchantment.DURABILITY);
-                            ItemStack result_item = new ItemStack(slot1.getType());
+                            ItemStack result_item = slot1.clone();
                             result_item.addUnsafeEnchantment(Enchantment.DURABILITY, level);
                             e.setResult(result_item);
                         }
