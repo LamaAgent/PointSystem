@@ -58,6 +58,14 @@ public class FileManager {
         return YamlConfiguration.loadConfiguration(getItemPointsFile());
     }
 
+    public static File getBlockPointsFile() {
+        return new File("plugins/PointSystem", "blockpoints.yml");
+    }
+
+    public static FileConfiguration getBlockPointsFileConfiguration() {
+        return YamlConfiguration.loadConfiguration(getBlockPointsFile());
+    }
+
     public static void setStandardConfig() {
         FileConfiguration cfg = getConfigFileConfiguration();
         cfg.options().copyDefaults(true);
@@ -178,6 +186,21 @@ public class FileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setStandardBlockPoints() {
+        FileConfiguration cfg = getBlockPointsFileConfiguration();
+        cfg.options().copyDefaults(true);
+
+        cfg.addDefault("points.spawner", 100);
+
+
+        try {
+            cfg.save(getBlockPointsFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

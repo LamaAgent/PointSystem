@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.util.Objects;
 
-public class LoginListener implements Listener {
+public class PlayerLoginListener implements Listener {
 
     @EventHandler
     public void onLogin(PlayerLoginEvent e) {

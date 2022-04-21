@@ -12,7 +12,7 @@ import org.bukkit.event.server.ServerListPingEvent;
 
 import java.util.Objects;
 
-public class PingListener implements Listener {
+public class ServerPingListener implements Listener {
 
     @EventHandler
     public void onPing(ServerListPingEvent e) {

@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class JoinListener implements Listener {
+public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(final PlayerJoinEvent e) {

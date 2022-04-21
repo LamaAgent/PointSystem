@@ -20,7 +20,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Objects;
 
-public class InteractListener implements Listener {
+public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {

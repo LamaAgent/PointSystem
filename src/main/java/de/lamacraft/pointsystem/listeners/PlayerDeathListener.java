@@ -13,7 +13,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.HashMap;
 
-public class DeathListener implements Listener {
+public class PlayerDeathListener implements Listener {
 
     public static HashMap<Player, Integer> kills = new HashMap<>();
 

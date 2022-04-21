@@ -94,6 +94,7 @@ public class Main extends JavaPlugin {
         FileManager.setStandardMySQL();
         FileManager.setStandardMobPoints();
         FileManager.setStandardItemPoints();
+        FileManager.setStandardBlockPoints();
         FileManager.readConfig();
         FileManager.readMySQL();
     }
@@ -113,7 +114,7 @@ public class Main extends JavaPlugin {
 
     public void setupListeners() {
 
-        Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
 
@@ -121,16 +122,18 @@ public class Main extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new PointChangeListener(), this);
 
-        Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
 
-        Bukkit.getPluginManager().registerEvents(new InteractListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new BlockPlaceListener(), this);
 
-        Bukkit.getPluginManager().registerEvents(new PingListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ServerPingListener(), this);
 
-        Bukkit.getPluginManager().registerEvents(new LoginListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerLoginListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new PrepareAnvilListener(), this);
+
+        Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), this);
     }
 }

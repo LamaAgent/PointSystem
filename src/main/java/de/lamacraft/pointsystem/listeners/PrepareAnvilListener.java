@@ -33,8 +33,9 @@ public class PrepareAnvilListener implements Listener {
                         if (esm != null) {
                             inventory.setRepairCost(30);
                             int level = esm.getStoredEnchantLevel(Enchantment.DURABILITY);
-                            ItemStack result_item = slot1.clone();
-                            result_item.addUnsafeEnchantment(Enchantment.DURABILITY, level);
+                            ItemStack result_item = e.getResult();
+                            if (result_item != null)
+                                result_item.addUnsafeEnchantment(Enchantment.DURABILITY, level);
                             e.setResult(result_item);
                         }
                     }
@@ -47,9 +48,9 @@ public class PrepareAnvilListener implements Listener {
                             if (esm != null) {
                                 inventory.setRepairCost(30);
                                 int level = esm.getStoredEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
-
-                                ItemStack result_item = slot1.clone();
-                                result_item.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, level);
+                                ItemStack result_item = e.getResult();
+                                if (result_item != null)
+                                    result_item.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, level);
                                 e.setResult(result_item);
 
                             }
@@ -58,12 +59,14 @@ public class PrepareAnvilListener implements Listener {
                 } else if (isSword(slot1)) {
                     for (ItemStack enchantment_book : ItemManager.getSharpnessEnchants()) {
                         if (slot2.isSimilar(enchantment_book)) {
+                            System.out.println("DEBUG 2");
                             EnchantmentStorageMeta esm = (EnchantmentStorageMeta) enchantment_book.getItemMeta();
                             if (esm != null) {
                                 inventory.setRepairCost(30);
                                 int level = esm.getStoredEnchantLevel(Enchantment.DAMAGE_ALL);
-                                ItemStack result_item = slot1.clone();
-                                result_item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, level);
+                                ItemStack result_item = e.getResult();
+                                if (result_item != null)
+                                    result_item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, level);
                                 e.setResult(result_item);
                             }
                         }
@@ -75,8 +78,9 @@ public class PrepareAnvilListener implements Listener {
                             if (esm != null) {
                                 inventory.setRepairCost(30);
                                 int level = esm.getStoredEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
-                                ItemStack result_item = slot1.clone();
-                                result_item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, level);
+                                ItemStack result_item = e.getResult();
+                                if (result_item != null)
+                                    result_item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, level);
                                 e.setResult(result_item);
                             }
                         }
@@ -88,8 +92,9 @@ public class PrepareAnvilListener implements Listener {
                             if (esm != null) {
                                 inventory.setRepairCost(30);
                                 int level = esm.getStoredEnchantLevel(Enchantment.DAMAGE_ALL);
-                                ItemStack result_item = slot1.clone();
-                                result_item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, level);
+                                ItemStack result_item = e.getResult();
+                                if (result_item != null)
+                                    result_item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, level);
                                 e.setResult(result_item);
                             }
                         }
@@ -100,8 +105,9 @@ public class PrepareAnvilListener implements Listener {
                             if (esm != null) {
                                 inventory.setRepairCost(30);
                                 int level = esm.getStoredEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
-                                ItemStack result_item = slot1.clone();
-                                result_item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, level);
+                                ItemStack result_item = e.getResult();
+                                if (result_item != null)
+                                    result_item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, level);
                                 e.setResult(result_item);
                             }
                         }
@@ -113,14 +119,14 @@ public class PrepareAnvilListener implements Listener {
                             if (esm != null) {
                                 inventory.setRepairCost(30);
                                 int level = esm.getStoredEnchantLevel(Enchantment.ARROW_DAMAGE);
-                                ItemStack result_item = slot1.clone();
-                                result_item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, level);
+                                ItemStack result_item = e.getResult();
+                                if (result_item != null)
+                                    result_item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, level);
                                 e.setResult(result_item);
                             }
                         }
                     }
-                } else
-                    return;
+                }
 
 
             }
