@@ -213,6 +213,14 @@ public class ItemManager {
         return unbreaking_enchants;
     }
 
+//    public static List<ItemStack> getCasinoItems() {
+//        List<ItemStack> items = new ArrayList<>();
+//        items.add(new ItemStack(Material.GOLD_INGOT));
+//        items.add(new ItemStack(Material.DIAMOND));
+//        items.add(new ItemStack(Material.EMERALD));
+//        return items;
+//    }
+
     public static ItemStack getShop_chest() {
         ItemMeta meta = shop_chest.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();

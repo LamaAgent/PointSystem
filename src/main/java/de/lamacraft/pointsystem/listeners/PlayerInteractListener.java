@@ -5,10 +5,12 @@
 
 package de.lamacraft.pointsystem.listeners;
 
+import de.lamacraft.pointsystem.api.PointsAPI;
 import de.lamacraft.pointsystem.main.Main;
 import de.lamacraft.pointsystem.utils.managers.InventoryManager;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Sign;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,9 +38,22 @@ public class PlayerInteractListener implements Listener {
                         if (container.has(key, PersistentDataType.STRING)) {
                             if ("chest_shop".equalsIgnoreCase(container.get(key, PersistentDataType.STRING))) {
                                 e.setCancelled(true);
-                                InventoryManager.createInventory(p);
+                                InventoryManager.createShopInventory(p);
                             }
                         }
+                    }
+                }
+            } else if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock().getState() instanceof Sign clickedSign) {
+
+                String line1 = clickedSign.getLine(0);
+
+                if (line1.equalsIgnoreCase("[CASINO]")) {
+                    if (PointsAPI.getPoints(p.getUniqueId()) >= 50000) {
+                        PointsAPI.removePoints(p.getUniqueId(), 50000, false);
+                        p.performCommand("testcasino");
+                    } else {
+                        p.sendMessage("§4Du brauchst mindestens §650000 §4Punkte um zu spinnen!");
+                        e.setCancelled(true);
                     }
                 }
             }

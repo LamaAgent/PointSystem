@@ -81,6 +81,8 @@ public class InventoryClickListener implements Listener {
                     }
                 }
             }
+        } else if (e.getView().getTitle().equalsIgnoreCase("CASINO")) {
+            e.setCancelled(true);
         }
     }
 

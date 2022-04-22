@@ -13,3 +13,5 @@ commands:
     description: (De)aktiviert den Wartungsmodus!
   resetwinner:
     description: Setzt den Gewinner zurück!
+  testcasino:
+    description: Test Command!
