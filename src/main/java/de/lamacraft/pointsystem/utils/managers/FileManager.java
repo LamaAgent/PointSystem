@@ -14,6 +14,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class FileManager {
@@ -66,24 +68,12 @@ public class FileManager {
         return YamlConfiguration.loadConfiguration(getBlockPointsFile());
     }
 
-    public static void setStandardConfig() {
-        FileConfiguration cfg = getConfigFileConfiguration();
-        cfg.options().copyDefaults(true);
-        cfg.addDefault("Prefix", "&8[&6PointSystem&8]");
-        cfg.addDefault("DiscordWebhook", "YOUR TOKEN");
-        cfg.addDefault("winner", "");
-        try {
-            cfg.save(getConfigFile());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static File getSayingsFile() {
+        return new File("plugins/PointSystem", "sayings.yml");
     }
 
-    public static void readConfig() {
-        FileConfiguration cfg = getConfigFileConfiguration();
-        Main.getInstance().prefix = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cfg.getString("Prefix"))) + " §r";
-
-        Main.getInstance().webhook_url = cfg.getString("DiscordWebhook");
+    public static FileConfiguration getSayingsFileConfiguration() {
+        return YamlConfiguration.loadConfiguration(getSayingsFile());
     }
 
     public static void setStandardMySQL() {
@@ -101,13 +91,17 @@ public class FileManager {
         }
     }
 
-    public static void readMySQL() {
-        FileConfiguration cfg = getMySQLFileConfiguration();
-        MySQL.username = cfg.getString("username");
-        MySQL.password = cfg.getString("password");
-        MySQL.database = cfg.getString("database");
-        MySQL.host = cfg.getString("host");
-        MySQL.port = cfg.getString("port");
+    public static void setStandardConfig() {
+        FileConfiguration cfg = getConfigFileConfiguration();
+        cfg.options().copyDefaults(true);
+        cfg.addDefault("Prefix", "&8[&6PointSystem&8]");
+        cfg.addDefault("DiscordWebhook", "YOUR TOKEN");
+        cfg.addDefault("winner", "");
+        try {
+            cfg.save(getConfigFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void setStandardMobPoints() {
@@ -203,4 +197,47 @@ public class FileManager {
 
     }
 
+    public static void setStandardSayings() {
+        FileConfiguration cfg = getSayingsFileConfiguration();
+        cfg.options().copyDefaults(true);
+
+        List<String> sayings = new ArrayList<>();
+
+        sayings.add("Ein Satz mit X, das war wohl nichts!");
+        sayings.add("Better luck next time!");
+        sayings.add("Du hast wohl weder Glück im Spiel noch in der Liebe!");
+        sayings.add("Der Weg zum Glück ist der nächste Versuch!");
+        sayings.add("Das nächste Los gewinnt bestimmt!");
+        sayings.add("Nicht verzagen - nochmal wagen!");
+        sayings.add("Das nächste Mal klappt's sicher!");
+        sayings.add("Dabeisein ist alles!");
+        sayings.add("Nimm's leicht - mach noch ein Spin!");
+        sayings.add("So'n Pech - Spin gleich nochmal!");
+        sayings.add("Neuer Spin - neues Glück!");
+        sayings.add("Pech im Spiel - Glück in der Liebe!");
+
+        cfg.addDefault("sayings", sayings);
+        try {
+            cfg.save(getSayingsFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void readConfig() {
+        FileConfiguration cfg = getConfigFileConfiguration();
+        Main.getInstance().prefix = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cfg.getString("Prefix"))) + " §r";
+
+        Main.getInstance().webhook_url = cfg.getString("DiscordWebhook");
+    }
+
+    public static void readMySQL() {
+        FileConfiguration cfg = getMySQLFileConfiguration();
+        MySQL.username = cfg.getString("username");
+        MySQL.password = cfg.getString("password");
+        MySQL.database = cfg.getString("database");
+        MySQL.host = cfg.getString("host");
+        MySQL.port = cfg.getString("port");
+    }
 }

@@ -23,9 +23,8 @@ import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
-    public String webhook_url;
     private static Main instance;
-
+    public String webhook_url;
     public String prefix;
 
     public static Main getInstance() {
@@ -95,6 +94,7 @@ public class Main extends JavaPlugin {
         FileManager.setStandardMobPoints();
         FileManager.setStandardItemPoints();
         FileManager.setStandardBlockPoints();
+        FileManager.setStandardSayings();
         FileManager.readConfig();
         FileManager.readMySQL();
     }

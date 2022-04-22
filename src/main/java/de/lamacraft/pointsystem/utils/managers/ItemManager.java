@@ -213,13 +213,37 @@ public class ItemManager {
         return unbreaking_enchants;
     }
 
-//    public static List<ItemStack> getCasinoItems() {
-//        List<ItemStack> items = new ArrayList<>();
-//        items.add(new ItemStack(Material.GOLD_INGOT));
-//        items.add(new ItemStack(Material.DIAMOND));
-//        items.add(new ItemStack(Material.EMERALD));
-//        return items;
-//    }
+    public static List<ItemStack> getCasinoItems() {
+        List<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Material.GOLD_INGOT));
+        items.add(new ItemStack(Material.DIAMOND));
+        items.add(new ItemStack(Material.EMERALD));
+        return items;
+    }
+
+    public static List<ItemStack> getGlassPanes() {
+        List<ItemStack> panes = new ArrayList<>();
+        ItemStack green = new ItemStack(Material.LIME_STAINED_GLASS_PANE);
+        ItemStack orange = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
+        ItemStack red = new ItemStack(Material.RED_STAINED_GLASS_PANE);
+
+        ItemMeta meta_green = green.getItemMeta();
+        meta_green.setDisplayName("§aSpinning...");
+        green.setItemMeta(meta_green);
+
+        ItemMeta meta_orange = orange.getItemMeta();
+        meta_orange.setDisplayName("§6Spinning...");
+        orange.setItemMeta(meta_orange);
+
+        ItemMeta meta_red = red.getItemMeta();
+        meta_red.setDisplayName("§cSpinning...");
+        red.setItemMeta(meta_red);
+
+        panes.add(green);
+        panes.add(orange);
+        panes.add(red);
+        return panes;
+    }
 
     public static ItemStack getShop_chest() {
         ItemMeta meta = shop_chest.getItemMeta();
