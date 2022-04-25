@@ -75,7 +75,7 @@ public class Main extends JavaPlugin {
 
         DiscordWebhook webhook = new DiscordWebhook(webhook_url);
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                .setDescription("Der Server wurde gestoppt!!")
+                .setDescription("Der Server wurde gestoppt!")
                 .setColor(Color.RED)
                 .setAuthor("SERVER", "", "https://i.ibb.co/Dw1CHgT/server-icon.png"));
 
@@ -136,5 +136,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PrepareAnvilListener(), this);
 
         Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), this);
+
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractEntityListener(), this);
     }
 }
