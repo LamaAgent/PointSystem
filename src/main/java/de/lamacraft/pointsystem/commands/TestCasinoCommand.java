@@ -7,7 +7,7 @@ package de.lamacraft.pointsystem.commands;
 
 import de.lamacraft.pointsystem.main.Main;
 import de.lamacraft.pointsystem.utils.managers.FileManager;
-import de.lamacraft.pointsystem.utils.managers.ItemManager;
+import de.lamacraft.pointsystem.utils.managers.GodEquipManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -30,11 +30,11 @@ public class TestCasinoCommand implements CommandExecutor {
 
     public static HashMap<Player, Boolean> isSpinning = new HashMap<>();
 
-    public static Location loc1 = new Location(Bukkit.getWorld("world"), -28.96875, 73.5, -0.5, 270.0f, 0.0f);
+    public static Location loc1 = new Location(Bukkit.getWorld("world"), -3.5, 69.5, 22.03125, 0.0f, 0.0f);
 
-    public static Location loc2 = new Location(Bukkit.getWorld("world"), -28.96875, 73.5, -1.5, 270.0f, 0.0f);
+    public static Location loc2 = new Location(Bukkit.getWorld("world"), -2.5, 69.5, 22.03125, 0.0f, 0.0f);
 
-    public static Location loc3 = new Location(Bukkit.getWorld("world"), -28.96875, 73.5, -2.5, 270.0f, 0.0f);
+    public static Location loc3 = new Location(Bukkit.getWorld("world"), -1.5, 69.5, 22.03125, 0.0f, 0.0f);
 
 
 //    private static void setGlassPanes(ItemStack glassPanes, Inventory inv, List<Integer> slots) {
@@ -74,6 +74,8 @@ public class TestCasinoCommand implements CommandExecutor {
 
                     isSpinning.put(p, true);
 
+                    List<ItemStack> casino_items = GodEquipManager.getGodItems();
+
                     List<ItemFrame> frames = new ArrayList<>();
                     frames.add(frame1);
                     frames.add(frame2);
@@ -92,8 +94,6 @@ public class TestCasinoCommand implements CommandExecutor {
 
                                     for (int i = 0; i <= 2; i++) {
 
-                                        List<ItemStack> casino_items = ItemManager.getCasinoItems();
-
                                         int max = casino_items.size();
 
                                         int min = 0;
@@ -105,8 +105,6 @@ public class TestCasinoCommand implements CommandExecutor {
                                 } else if (status > 5) {
                                     for (int i = 1; i <= 2; i++) {
 
-                                        List<ItemStack> casino_items = ItemManager.getCasinoItems();
-
                                         int max = casino_items.size();
 
                                         int min = 0;
@@ -117,8 +115,6 @@ public class TestCasinoCommand implements CommandExecutor {
                                     }
                                 } else if (status > 0) {
                                     for (int i = 2; i <= 2; i++) {
-
-                                        List<ItemStack> casino_items = ItemManager.getCasinoItems();
 
                                         int max = casino_items.size();
 

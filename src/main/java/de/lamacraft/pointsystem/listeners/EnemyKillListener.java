@@ -37,6 +37,18 @@ public class EnemyKillListener implements Listener {
                     assert p != null;
                     PointsAPI.addPoints(p.getUniqueId(), cfg.getInt("points.pillager"), null);
                 }
+                case SPIDER -> {
+                    assert p != null;
+                    PointsAPI.addPoints(p.getUniqueId(), cfg.getInt("points.spider"), null);
+                }
+                case ENDER_DRAGON -> {
+                    assert p != null;
+                    PointsAPI.addPoints(p.getUniqueId(), cfg.getInt("points.ender_dragon"), null);
+                }
+                case WITHER -> {
+                    assert p != null;
+                    PointsAPI.addPoints(p.getUniqueId(), cfg.getInt("points.wither"), null);
+                }
                 case RAVAGER -> {
                     assert p != null;
                     PointsAPI.addPoints(p.getUniqueId(), cfg.getInt("points.ravager"), null);

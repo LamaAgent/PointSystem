@@ -111,6 +111,7 @@ public class Main extends JavaPlugin {
         Objects.requireNonNull(Bukkit.getPluginCommand("maintance")).setExecutor(new MaintanceCommand());
         Objects.requireNonNull(Bukkit.getPluginCommand("resetwinner")).setExecutor(new ResetWinnerCommand());
         Bukkit.getPluginCommand("testcasino").setExecutor(new TestCasinoCommand());
+        Bukkit.getPluginCommand("listframes").setExecutor(new ListFramesCommand());
     }
 
     public void setupListeners() {

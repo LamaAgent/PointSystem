@@ -107,37 +107,40 @@ public class FileManager {
     public static void setStandardMobPoints() {
         FileConfiguration cfg = getMobPointsFileConfiguration();
         cfg.options().copyDefaults(true);
-        cfg.addDefault("points.evoker", 10);
-        cfg.addDefault("points.vindicator", 10);
-        cfg.addDefault("points.pillager", 10);
-        cfg.addDefault("points.ravager", 10);
-        cfg.addDefault("points.vex", 10);
-        cfg.addDefault("points.endermite", 10);
-        cfg.addDefault("points.guardian", 10);
-        cfg.addDefault("points.elder_guardian", 10);
-        cfg.addDefault("points.shulker", 10);
-        cfg.addDefault("points.husk", 10);
-        cfg.addDefault("points.stray", 10);
-        cfg.addDefault("points.phantom", 10);
-        cfg.addDefault("points.blaze", 10);
-        cfg.addDefault("points.creeper", 10);
-        cfg.addDefault("points.ghast", 10);
+        cfg.addDefault("points.evoker", 850);
+        cfg.addDefault("points.vindicator", 500);
+        cfg.addDefault("points.pillager", 300);
+        cfg.addDefault("points.ravager", 1000);
+        cfg.addDefault("points.vex", 100);
+        cfg.addDefault("points.endermite", 100);
+        cfg.addDefault("points.guardian", 100);
+        cfg.addDefault("points.elder_guardian", 2000);
+        cfg.addDefault("points.shulker", 250);
+        cfg.addDefault("points.husk", 40);
+        cfg.addDefault("points.spider", 35);
+        cfg.addDefault("points.stray", 75);
+        cfg.addDefault("points.phantom", 100);
+        cfg.addDefault("points.blaze", 100);
+        cfg.addDefault("points.creeper", 50);
+        cfg.addDefault("points.ghast", 150);
         cfg.addDefault("points.magma_cube", 10);
-        cfg.addDefault("points.silverfish", 10);
-        cfg.addDefault("points.skeleton", 10);
+        cfg.addDefault("points.silverfish", 50);
+        cfg.addDefault("points.skeleton", 50);
         cfg.addDefault("points.slime", 10);
-        cfg.addDefault("points.zombie", 10);
-        cfg.addDefault("points.zombie_villager", 10);
-        cfg.addDefault("points.drowned", 10);
-        cfg.addDefault("points.wither_skeleton", 10);
-        cfg.addDefault("points.witch", 10);
-        cfg.addDefault("points.hoglin", 10);
-        cfg.addDefault("points.zoglin", 10);
-        cfg.addDefault("points.piglin_brute", 10);
-        cfg.addDefault("points.cave_spider", 10);
-        cfg.addDefault("points.enderman", 10);
-        cfg.addDefault("points.piglin", 10);
-        cfg.addDefault("points.zombified_piglin", 10);
+        cfg.addDefault("points.zombie", 25);
+        cfg.addDefault("points.zombie_villager", 200);
+        cfg.addDefault("points.drowned", 40);
+        cfg.addDefault("points.wither_skeleton", 200);
+        cfg.addDefault("points.witch", 100);
+        cfg.addDefault("points.hoglin", 150);
+        cfg.addDefault("points.zoglin", 1000);
+        cfg.addDefault("points.piglin_brute", 1000);
+        cfg.addDefault("points.cave_spider", 75);
+        cfg.addDefault("points.enderman", 30);
+        cfg.addDefault("points.piglin", 50);
+        cfg.addDefault("points.zombified_piglin", 50);
+        cfg.addDefault("points.wither", 1200);
+        cfg.addDefault("points.ender_dragon", 10000);
         try {
             cfg.save(getMobPointsFile());
         } catch (IOException e) {
@@ -149,31 +152,31 @@ public class FileManager {
         FileConfiguration cfg = getItemPointsFileConfiguration();
         cfg.options().copyDefaults(true);
         //Ingots
-        cfg.addDefault("points.iron_ingot", 10);
-        cfg.addDefault("points.gold_ingot", 10);
+        cfg.addDefault("points.iron_ingot", 12);
+        cfg.addDefault("points.gold_ingot", 12);
         cfg.addDefault("points.copper_ingot", 10);
-        cfg.addDefault("points.netherite_ingot", 10);
+        cfg.addDefault("points.netherite_ingot", 800);
 
         //Other Ores
-        cfg.addDefault("points.emerald", 10);
+        cfg.addDefault("points.emerald", 15);
         cfg.addDefault("points.lapis_lazuli", 10);
         cfg.addDefault("points.redstone", 10);
-        cfg.addDefault("points.coal", 10);
-        cfg.addDefault("points.diamond", 10);
+        cfg.addDefault("points.coal", 8);
+        cfg.addDefault("points.diamond", 40);
 
         //Special Items
-        cfg.addDefault("points.dragon_egg", 10);
-        cfg.addDefault("points.sponge", 10);
-        cfg.addDefault("points.beacon", 10);
-        cfg.addDefault("points.shulker_box", 10);
-        cfg.addDefault("points.turtle_egg", 10);
-        cfg.addDefault("points.ender_pearl", 10);
-        cfg.addDefault("points.experience_bottle", 10);
-        cfg.addDefault("points.nether_star", 10);
-        cfg.addDefault("points.saddle", 10);
-        cfg.addDefault("points.name_tag", 10);
-        cfg.addDefault("points.heart_of_the_sea", 10);
-        cfg.addDefault("points.elytra", 10);
+        cfg.addDefault("points.dragon_egg", 100000);
+        cfg.addDefault("points.sponge", 200);
+        cfg.addDefault("points.beacon", 6000);
+        cfg.addDefault("points.shulker_box", 2500);
+        cfg.addDefault("points.turtle_egg", 60);
+        cfg.addDefault("points.ender_pearl", 15);
+        cfg.addDefault("points.experience_bottle", 5000);
+        cfg.addDefault("points.nether_star", 5000);
+        cfg.addDefault("points.saddle", 2000);
+        cfg.addDefault("points.name_tag", 1000);
+        cfg.addDefault("points.heart_of_the_sea", 6000);
+        cfg.addDefault("points.elytra", 4500);
 
         try {
             cfg.save(getItemPointsFile());
@@ -185,10 +188,7 @@ public class FileManager {
     public static void setStandardBlockPoints() {
         FileConfiguration cfg = getBlockPointsFileConfiguration();
         cfg.options().copyDefaults(true);
-
-        cfg.addDefault("points.spawner", 100);
-
-
+        cfg.addDefault("points.spawner", 1500);
         try {
             cfg.save(getBlockPointsFile());
         } catch (IOException e) {

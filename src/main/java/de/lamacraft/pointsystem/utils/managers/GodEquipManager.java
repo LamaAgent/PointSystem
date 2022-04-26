@@ -42,30 +42,33 @@ public class GodEquipManager {
 
     public static void applyEnchants() {
 
-        netherite_sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 10);
-        netherite_sword.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 10);
-        netherite_sword.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 10);
+        netherite_sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 7);
+        netherite_sword.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 5);
+        netherite_sword.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 4);
 
         ItemMeta netherite_sword_item_meta = netherite_sword.getItemMeta();
         netherite_sword_item_meta.setUnbreakable(true);
+        netherite_sword_item_meta.setDisplayName("§l§4Graf Darryl");
         netherite_sword.setItemMeta(netherite_sword_item_meta);
 
 
-        netherite_axe.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 10);
-        netherite_axe.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 10);
-        netherite_axe.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 10);
-        netherite_axe.addUnsafeEnchantment(Enchantment.DIG_SPEED, 10);
+        netherite_axe.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 7);
+        netherite_axe.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 5);
+        netherite_axe.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 5);
+        netherite_axe.addUnsafeEnchantment(Enchantment.DIG_SPEED, 7);
 
         ItemMeta netherite_axe_item_meta = netherite_axe.getItemMeta();
         netherite_axe_item_meta.setUnbreakable(true);
+        netherite_axe_item_meta.setDisplayName("§l§5Darryl Capacitor");
         netherite_axe.setItemMeta(netherite_axe_item_meta);
 
 
-        netherite_pickaxe.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 10);
-        netherite_pickaxe.addUnsafeEnchantment(Enchantment.DIG_SPEED, 10);
+        netherite_pickaxe.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 5);
+        netherite_pickaxe.addUnsafeEnchantment(Enchantment.DIG_SPEED, 7);
 
         ItemMeta netherite_pickaxe_item_meta = netherite_pickaxe.getItemMeta();
         netherite_pickaxe_item_meta.setUnbreakable(true);
+        netherite_pickaxe_item_meta.setDisplayName("§l§8Darryl das Nutztier");
         netherite_pickaxe.setItemMeta(netherite_pickaxe_item_meta);
 
 
